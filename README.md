@@ -18,7 +18,7 @@ The aim is for the workspace to be simple enough that's not full of cluter but s
 
 - Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/) + [Tmux](https://github.com/tmux/tmux)
     - Theme: [Nord](https://github.com/arcticicestudio/nord)
-    - Shell: [Zsh](https://wiki.archlinux.org/index.php/zsh)
+    - Shell: [Zsh](https://wiki.archlinux.org/index.php/zsh) + [Zgen](https://github.com/tarjoilija/zgen)
     - Font: [Source Code Pro for Powerline](https://github.com/powerline/fonts/tree/master/SourceCodePro)
 - Editor: [Nvim](https://neovim.io/)
 
