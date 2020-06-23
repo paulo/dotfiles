@@ -1,0 +1,26 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = Paulo Araújo
+#	email = paulo.araujo@cabify.com
+[user]
+	name = Paulo
+	email = paulorccaraujo@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = nvim
+[push]
+	default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[url "git@github.com:"]
+        insteadOf = https://github.com/
+
+# To access gitlab, please configure the .netrc with the following structure:
+# machine <gitlab_host>
+#   login <user_name>@<gitlab_host>
+#   password <gitlab_token>

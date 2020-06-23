@@ -1,0 +1,117 @@
+#!/bin/bash
+
+nav_command_name="gitnav"
+mkdir -p "$CACHE_DIR/$nav_command_name"
+nav_projects_cache="$CACHE_DIR/$nav_command_name/gitlab_projects"
+access_level=30 # at least developer role
+per_page=100
+host_prefix="https://gitlab.otters.xyz/"
+
+format_cowsay_lolcat() {
+    cat
+}
+command -v cowsay >/dev/null 2>&1 && command -v lolcat >/dev/null 2>&1 && \
+    { format_cowsay_lolcat() { cowsay -f moose -W80 | lolcat }; }
+
+# gitnav excludes personal repos (repos with a dot in the root dirname)
+gitnav() {
+    query=""
+    if [[ $# -ge 1 ]]; then
+        query="$@"
+        repo=$(_gitlab_get_project_urls | fzf --filter="$query" --no-sort)
+        if [[ ! -z "$repo" && $(wc -l <<< "$repo") == 1 ]]; then
+            gitcd "$repo"
+            return 0
+        fi
+    fi
+    repo=$(_gitlab_get_project_urls | fzf --query="$query")
+    if [[ -z "$repo" ]];
+    then
+        # User didn't select anything
+        return 1;
+    fi
+    gitcd "$repo"
+}
+
+# gitnavall doesn't exclude any repo from the search
+gitnavall() {
+    valid
+    repo=$(_gitlab_get_project_urls | fzf)
+    if [[ -z "$repo" ]];
+    then
+        # User didn't select anything
+        return 1;
+    fi
+    gitcd "$repo"
+}
+
+
+# Note: this requires GNU sed to be used
+# If you're using mac, make sure you install and add to your path coreutils
+# brew install coreutils gnu-sed
+gitcd() {
+    : "${WORKSPACE_PATH:?WORKSPACE_PATH env var should be defined for this script}"
+
+    # repo=product/team/repo.git
+    # or
+    # repo=product/team/repo
+    repo=$1
+
+    if [[ -z "$repo" ]];
+    then
+        echo "Empty param provided."
+        return 1
+    fi
+
+    local_path="${WORKSPACE_PATH}/${repo}"
+    repo_with_domain="${host_prefix}${repo}"
+
+    if [[ -d "$local_path" ]]; then
+        echo "Navigated to already existing \n $repo \n Don't forget to fetch updates" | format_cowsay_lolcat
+        cd "$local_path"
+        return 0
+    fi
+
+    echo "Cloning \n $repo" | format_cowsay_lolcat
+    mkdir -p "$local_path"
+    git clone "$repo_with_domain" "$local_path"
+    cd "$local_path"
+}
+
+_gitlab_get_project_urls() {
+    if [ -f $nav_projects_cache ]
+    then
+        # if the cache exists, output the contents as to not wait for the api calls...
+        # ...and update cache in the background silently
+        cat $nav_projects_cache
+        (_update_nav_cache_file &)
+    else
+        # if it does not exist, create the cache file, populate it sync and retrieve its contents
+        touch $nav_projects_cache
+        _update_nav_cache_file
+    fi
+}
+
+_update_nav_cache_file() {
+    page=1
+    while :
+    do
+        # Fetch and extract namespaces from all the pages till we get an empty response
+        page_content=`curl --header "Private-Token: $GITLAB_ACCESS_TOKEN" "https://$GITLAB_HOST/api/v4/projects?simple=true&per_page=$per_page&page=$page&min_access_level=$access_level&order_by=updated_at" 2> /dev/null | jq -r '.[] | .web_url'`
+        if [ -z "$page_content" ]
+        then
+            break
+        else
+            all_project_namespaces+=( "${page_content}\n" )
+            ((page++))
+        fi
+    done
+
+    echo $all_project_namespaces |
+        sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | # remove whitespaces
+        sed -e "s~^$host_prefix~~" | # remove host prefix
+        sort |
+        comm -13 $nav_projects_cache - |         # append to the projects cache
+        tee -a $nav_projects_cache &&
+        sort -o $nav_projects_cache $nav_projects_cache # keep the projects cache sorted
+}

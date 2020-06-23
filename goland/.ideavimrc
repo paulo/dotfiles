@@ -1,0 +1,98 @@
+" Leader key
+let mapleader = ","
+" Local leader key (for local buffers and less common mappings)
+let maplocalleader = " "
+
+" Configure access to private gitlab repos by fugitive
+let g:fugitive_gitlab_domains = ['https://gitlab.otters.xyz']
+" let g:gitlab_api_keys = {'gitlab.com': 'myaccesstoken'}
+
+set nocompatible
+set incsearch " Incremental search highlight
+set number " Number display
+set relativenumber " Relative numbering
+set showmode " Show current editor mode
+set ignorecase " Case insensitive searching
+set visualbell " No sounds
+set smarttab " Smart tab handling for indenting
+
+" Open new split panes to right and bottom, which feels more natural than Vim’s default
+set splitbelow
+set splitright
+
+" Enable yanking till the end of the line
+noremap Y y$
+
+" Convert the j and k movement commands from strict linewise movements to onscreen display line movements.
+nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
+nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
+
+" Insert an empty new line without entering insert mode
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+
+" Window spliting and quiting
+nnoremap <silent> <leader>s :split<CR>
+nnoremap <silent> <leader>v :vsplit<CR>
+nnoremap <silent> <leader>q :close<CR>
+
+" Moving between windows
+nnoremap <C-h> :action VimWindowLeft<CR>
+nnoremap <C-l> :action VimWindowRight<CR>
+nnoremap <C-k> :action VimWindowUp<CR>
+nnoremap <C-j> :action VimWindowDown<CR>
+
+" Fzf-like mappings
+nnoremap <silent> <leader>/ :action FindModal<CR>
+nnoremap <silent> <leader>f :action GotoFile<CR>
+nnoremap <silent> <leader>t :action GotoClass<CR>
+nnoremap <silent> <leader>b :action SearchEverywhere<CR>
+
+" Stuff to be tested or to find replacements
+
+" Emulate vim commentary and make my own bindings
+" set commentary
+
+" Directory, file and buffer navigation
+" Plug 'scrooloose/nerdtree' " Tree explorer for vim.
+" Show/hide, create/delete/move files
+
+" Plug 'Xuyuanp/nerdtree-git-plugin' " NerdTree's git status
+
+" Ctags
+" Plug 'ludovicchabant/vim-gutentags'
+" Check shortcuts to go to definition and find usages
+
+" Code edition
+" Plug 'scrooloose/nerdcommenter' " Comment code.
+" Plug 'tpope/vim-surround' " Support for surrounding text.
+" Plug 'michaeljsmith/vim-indent-object' " Indentation as text objects
+" Plug 'kana/vim-textobj-user' " Allows the definition of new text objects
+" Plug 'wellle/targets.vim' " More text objects
+" Plug 'godlygeek/tabular' " Align equals
+
+" Accessibility
+" Plug 'tpope/vim-fugitive' " Git integration
+" Plug 'shumphrey/fugitive-gitlab.vim' " Gitlab support
+" Plug 'tpope/vim-repeat' " Enhances . command
+" Plug 'tpope/vim-unimpaired' " Complementary pairs of mappings
+" Plug 'kshenoy/vim-signature' " Support for marks
+" Can be done with bookmarks?
+
+
+" Code commenting
+" let g:NERDSpaceDelims = 1 " Add spaces after comment delimiters by default.
+" let g:NERDCompactSexyComs = 1 " Use compact syntax for pretified multi-line comments.
+
+" Execute a macro on an the lines of a visual block
+" xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" function! ExecuteMacroOverVisualRange()
+  " echo "@".getcmdline()
+  " execute ":'<,'>normal @".nr2char(getchar())
+" endfunction
+
+
+" There are multiple choices available when choosing a fold method. <leader><Space> toggles a fold based on the indent level of the current cursor line
+" nnoremap <leader><Space> za
+" Does not work, check how to do it

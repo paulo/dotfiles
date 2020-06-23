@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Custom command: fgco
+# checkout git branch sorted by most recent commit
+fgco() {
+    local branches branch
+        branches=$(git --no-pager branch --sort=-committerdate -vv) &&
+        branch=$(echo "$branches" | fzf +m) &&
+        git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}

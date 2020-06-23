@@ -1,0 +1,29 @@
+#!/bin/bash
+
+############################################
+#         Source ZGen framework
+############################################
+
+# Don't allow compinit to be called by zgen (already called by pretzo completion)
+export ZGEN_AUTOLOAD_COMPINIT=0
+
+# Load zgen
+source "${HOME}/.zgen/zgen.zsh"
+
+# If the init script doesn't exist
+if ! zgen saved; then
+  zgen prezto
+
+  # Stolen from oh-my-zsh since I don't want to bloat the config
+  zgen load ~/.zsh_plugins/git.plugin.zsh # Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
+  zgen load ~/.zsh_plugins/z.plugin.zsh # Jump between directories. Usage: z
+  zgen load ~/.zsh_plugins/search_keys.plugin.zsh # Autocompletion with up arrow on the terminal.
+
+  ###################################################################3
+
+  zgen load djui/alias-tips # Gives a tip when you use a command that as a defined alias.
+  zgen load b4b4r07/enhancd # cd with fuzzy finding. Dependecy: jhawthorn/fzy. Usage: cd
+  zgen load paulirish/git-open # Open github from terminal
+
+  zgen save
+fi

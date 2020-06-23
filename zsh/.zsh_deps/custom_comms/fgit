@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Custom command: fgit
+# Fuzzy find through gitlab's projects and open in browser
+# Allows to open multiple projects at once
+# Inspired by https://blog.jiayu.co/2019/04/fuzzy-searching-github-or-gitlab-repositories/
+fgit(){
+    if [ -z "$GITLAB_HOST" ]; then
+        echo "error: \$GITLAB_HOST not set" >&2
+        return 1
+    fi
+
+    if [ -z "$GITLAB_ACCESS_TOKEN" ]; then
+        echo "warning: \$GITLAB_ACCESS_TOKEN not set: only showing cached projects" >&2
+        return
+    fi
+
+    if [ ! -f $projects_cache ]
+    then
+        echo "The cache file $projects_cache does not exist. It may take a while to warm up."
+    fi
+
+    _gitlab_get_projects | _fzf_git_open
+}
+
+command_name="fgit"
+mkdir -p "$CACHE_DIR/$command_name"
+projects_cache="$CACHE_DIR/$command_name/gitlab_projects"
+access_level=30 # at least developer role
+per_page=100
+
+_gitlab_get_projects() {
+    if [ -f $projects_cache ]
+    then
+        # if the cache exists, output the contents as to not wait for the api calls...
+        # ...and update cache in the background silently
+        cat $projects_cache
+        (_update_cache_file &)
+    else
+        # if it does not exist, create the cache file, populate it sync and retrieve its contents
+        touch $projects_cache
+        _update_cache_file
+    fi
+}
+
+_update_cache_file() {
+    page=1
+    while :
+    do
+        # Fetch and extract namespaces from all the pages till we get an empty response
+        page_content=`curl --header "Private-Token: $GITLAB_ACCESS_TOKEN" "https://$GITLAB_HOST/api/v4/projects?simple=true&per_page=$per_page&page=$page&min_access_level=$access_level&order_by=updated_at" 2> /dev/null | jq -r '.[] | .path_with_namespace'`
+        if [ -z "$page_content" ]
+        then
+            break
+        else
+            all_project_namespaces+=( "${page_content}\n" )
+            ((page++))
+        fi
+    done
+
+    echo $all_project_namespaces |
+        sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | # remove whitespaces
+        sort |
+        comm -13 $projects_cache - |         # append to the projects cache
+        tee -a $projects_cache &&
+        sort -o $projects_cache $projects_cache # keep the projects cache sorted
+}
+
+# Given a list of projects, open each one in the browser
+_fzf_git_open() {
+    local projects
+    IFS=$'\n' projects=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+    for proj in $projects; do
+        [[ -n "$proj" ]] && open "https://$GITLAB_HOST/$proj"
+    done
+}

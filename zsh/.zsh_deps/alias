@@ -1,0 +1,78 @@
+#!/bin/bash
+############################################
+#       Alias for frequent commands        #
+############################################
+
+# History
+alias h='history'
+
+# Utilities
+alias l='ls -la'
+alias ff='rg --files | fzf'
+
+# Finder tools
+
+## Fzf (https://github.com/junegunn/fzf)
+alias gfind='fzf'
+
+### Usage
+
+# CTRL-T - Paste the selected files and directories onto the command-line
+# CTRL-R - Paste the selected command from history onto the command-line
+# ALT-C - cd into the selected directory
+# Ctrl-P - edit a file in vim from fzf
+# mv dir/** - expand a directory with (**) and select from fzf
+
+#### Fuzzy completion
+
+# vim **<TAB> - Select multiple items with TAB key
+
+## Ripgrep (https://bluz71.github.io/2018/06/07/ripgrep-fd-command-line-search-tools.html)
+### Usage
+
+# rg Foo       # Case sensitive search
+# rg -i foo    # Case insensitive search
+# rg -v foo    # Invert search, show all lines that don't match pattern
+# rg -l foo    # List only the files that match, not content
+# rg -t md foo # Match by `md` file extension
+
+## Fd (https://github.com/sharkdp/fd)
+
+### Usage
+
+# fd              # List all non-ignored files
+# fd foo          # Case insensitive search
+# fd Foo          # Case sensitive search
+# fd --type f foo # Match only files
+# fd --type d foo # Match only directories
+# fd -e md foo    # Match by `md` file extension
+# fd '^[0-9]'     # List files starting with a digit
+
+
+# Tmux
+alias tx='tmuxinator'
+alias tmux="TERM=xterm-256color tmux"
+
+# Nvim
+alias v="$EDITOR"
+
+# Sublime
+alias s='sublime'
+alias subl='sublime'
+
+# Clean logs to speed up terminal boot
+alias cleanlogs='sudo rm /private/var/log/asl/*.asl'
+
+# Git
+alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
+alias gbo='git branch --sort=-committerdate' # Show branches ordered by date
+
+# Erlang
+alias erlang='erl'
+
+# Elixir
+alias mps='mix phx.server'
+alias mpc='iex -S mix phx.server'
+
+# Goland
+alias i='goland'

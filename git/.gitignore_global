@@ -1,0 +1,11 @@
+# MacOS
+DS_Store
+
+# Asdf
+.tool-versions
+
+# CTags
+tags
+
+# Intellij
+.idea
