@@ -111,9 +111,27 @@ set lazyredraw
 nnoremap <esc> :noh<return><esc>
 nnoremap <esc>^[ <esc>^[
 
-" Python host configuration (needed for YouCompleteMe)
-let g:python_host_prog = '/usr/local/Cellar/pyenv/1.2.13/versions/2.7.14/envs/neovim2/bin/python'
-let g:python3_host_prog = '/usr/local/Cellar/pyenv/1.2.13/versions/3.7.4/envs/neovim3/bin/python3'
+" Detect the current OS for host specific configs
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
+
+
+" Python host configuration by OS (needed for deoplete)
+if g:os == "Darwin"
+  let g:python_host_prog = '/usr/local/Cellar/pyenv/1.2.13/versions/2.7.14/envs/neovim2/bin/python'
+  let g:python3_host_prog = '/usr/local/Cellar/pyenv/1.2.13/versions/3.7.4/envs/neovim3/bin/python3'
+elseif g:os == "Linux"
+  let g:python_host_prog = '/home/paulo/.pyenv/versions/2.7.18/envs/neovim2/bin/python'
+  let g:python3_host_prog = '/home/paulo/.pyenv/versions/3.8.5/envs/neovim3/bin/python3'
+elseif g:os == "Windows"
+  " not supported
+endif
+
 
 source ~/.config/nvim/powerline.vim
 source ~/.config/nvim/nerdtree.vim

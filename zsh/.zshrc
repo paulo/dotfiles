@@ -30,8 +30,8 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 
 # Work exclusive configuration
 # TODO: Source by envvar
-. $ZSH_DEPS_HOME/private/work
-. $ZSH_DEPS_HOME/private/secrets
+[ -d $ZSH_DEPS_HOME/private/work ] && . $ZSH_DEPS_HOME/private/work
+[ -d $ZSH_DEPS_HOME/private/secrets ] && . $ZSH_DEPS_HOME/private/secrets
 
 # Source zplug (same config as with zgen, but slower)
 # zplug "zsh-users/zsh-syntax-highlighting", defer:3
@@ -51,8 +51,8 @@ export ZSH_HIGHLIGHT_STYLES[path]=none
 
 # Init pyenv and virtual-env
 # TODO: Init by env var
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 #if not inside a tmux session, and if no session is started, start a new session
 if which tmux >/dev/null 2>&1; then

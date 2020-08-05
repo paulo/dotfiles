@@ -35,8 +35,11 @@ export GOPATH_BIN="$GOPATH/bin" # For convenience
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
 
+# Python configs
+export PYENV_ROOT="$HOME/.pyenv"
+
 ##### PATH CONFIG #####
-export PATH="$ASDF_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH"
+export PATH="$ASDF_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
 #######################
 
 # Fzf configs
