@@ -83,6 +83,9 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'vim-ruby/vim-ruby'
 "" Python
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+"" C++
+Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
+Plug 'zchee/deoplete-clang'
 
 call plug#end()
 

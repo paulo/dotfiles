@@ -40,6 +40,7 @@ let g:LanguageClient_serverCommands = {
     \ 'python': ['/usr/local/bin/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ 'go': ['go-langserver'],
+    \ 'cpp': ['clangd']
     \ }
 
 " Tabular plugin mappings
@@ -58,3 +59,18 @@ nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
+
+" Autoformat cpp files (inspired by https://gist.github.com/p1v0t/42a34744b5e4f5980e5f4e1c980ec859)
+let g:clang_format#auto_format=1
+
+let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/10.0.1/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header='/usr/local/opt/llvm/include/clang'
