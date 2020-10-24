@@ -11,7 +11,6 @@ export BREW_HOME="$LOCAL_PATH/opt"
 
 export ASDF_PATH="$HOME/.asdf/shims"
 export ASDF_DATA_DIR="$HOME/.asdf"
-export PYENV_ROOT="$LOCAL_PATH/opt/pyenv" # To remove maybe
 
 export DEVELOPMENT_HOME="$HOME/dev"
 export RUBY_HOME="$ASDF_PATH/ruby"
@@ -36,7 +35,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
 
 # Python configs
-export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$LOCAL_PATH/opt/pyenv" # PYENV_ROOT="$HOME/.pyenv"
 
 ##### PATH CONFIG #####
 export PATH="$ASDF_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
