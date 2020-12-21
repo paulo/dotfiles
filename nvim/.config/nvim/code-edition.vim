@@ -32,17 +32,6 @@ endfunction
 " Avoid trailing spaces and remove them on buffer write
 autocmd BufWritePre * %s/\s\+$//e
 
-" Language server config
-" Required for operations modifying multiple buffers like rename.
-set hidden
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ 'go': ['go-langserver'],
-    \ 'cpp': ['clangd']
-    \ }
-
 " Tabular plugin mappings
 nmap <leader>a= :Tab /=<CR>
 vmap <leader>a= :Tab /=<CR>
@@ -71,6 +60,3 @@ autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
 
 " Autoformat cpp files (inspired by https://gist.github.com/p1v0t/42a34744b5e4f5980e5f4e1c980ec859)
 let g:clang_format#auto_format=1
-
-let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/10.0.1/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header='/usr/local/opt/llvm/include/clang'
