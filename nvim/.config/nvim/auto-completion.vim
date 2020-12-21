@@ -45,5 +45,5 @@ call deoplete#custom#var('tabnine', {
 \ })
 
 " C++ deoplete config
-let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/10.0.1_1/lib/libclang.dylib'
+let g:deoplete#sources#clang#libclang_path='/usr/local/Cellar/llvm/11.0.0/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header='/usr/local/opt/llvm/include/clang'
