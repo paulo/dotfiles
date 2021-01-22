@@ -50,7 +50,7 @@ command! -bang -nargs=* Ag
 " Enabling Rg fuzzy finding with Ripgrep as well
 command! -bang -nargs=* Rg
       \ call fzf#vim#grep(
-      \   'rg -g "!.git" -g "!_build" -g "!deps" --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+      \   'rg -g "!.git" -g "!_build" -g "!deps" -g "!vendor" --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
       \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
       \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
       \   <bang>0)
