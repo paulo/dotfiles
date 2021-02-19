@@ -73,16 +73,16 @@ Plug 'haya14busa/is.vim' " Incremental search and clear highlighting
 Plug 'tpope/vim-repeat' " Enhances . command
 Plug 'tpope/vim-unimpaired' " Complementary pairs of mappings
 Plug 'kshenoy/vim-signature' " Support for marks
+" Plug 'pechorin/any-jump.vim' " Find code definition/usage
 
 " Language support
 Plug 'sheerun/vim-polyglot'
-Plug 'tpope/vim-cucumber'
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "" Ruby
 Plug 'vim-ruby/vim-ruby'
 "" Python
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
+" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "" C++
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 Plug 'zchee/deoplete-clang'
