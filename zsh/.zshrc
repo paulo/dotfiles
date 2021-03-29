@@ -53,6 +53,9 @@ export ZSH_HIGHLIGHT_STYLES[path]=none
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+# Init zoxide (https://github.com/ajeetdsouza/zoxide)
+eval "$(zoxide init zsh)"
+
 #if not inside a tmux session, and if no session is started, start a new session
 if which tmux >/dev/null 2>&1; then
   test -z "$TMUX" && (tmux attach -t default || tmux new -s default)

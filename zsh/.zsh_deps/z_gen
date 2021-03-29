@@ -16,7 +16,6 @@ if ! zgen saved; then
 
   # Stolen from oh-my-zsh since I don't want to bloat the config
   zgen load ~/.zsh_plugins/git.plugin.zsh # Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
-  zgen load ~/.zsh_plugins/z.plugin.zsh # Jump between directories. Usage: z
   zgen load ~/.zsh_plugins/search_keys.plugin.zsh # Autocompletion with up arrow on the terminal.
 
   ###################################################################3
