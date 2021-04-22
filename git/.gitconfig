@@ -9,6 +9,7 @@
 	excludesfile = ~/.gitignore_global
 	editor = nvim
 	attributesfile = /Users/pauloaraujo/.gitattributes
+        pager = delta
 [push]
 	default = current
 [filter "lfs"]
@@ -27,6 +28,19 @@
 		-o merge_request.title=\"$1\" -o merge_request.description=\"$2\" \
 		origin $(git cb)' -
 
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    features = line-numbers decorations
+    whitespace-error-style = 22 reverse
+    plus-style = "syntax #012800"
+    minus-style = "syntax #340001"
+    navigate = true
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
 
 # To access gitlab, please configure the .netrc with the following structure:
 # machine <gitlab_host>
