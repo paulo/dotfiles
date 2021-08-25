@@ -18,32 +18,17 @@ Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between vim splits a
 Plug 'itchyny/lightline.vim'
 Plug 'jacoborus/tender.vim'
 
-" Autocompletion and snippets
-Plug 'sirver/ultisnips' " Snippets engine
-Plug 'honza/vim-snippets' " Snippets are separated from the engine.
+" Auto-complete engine
+Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
-if has('win32') || has('win64')
-  Plug 'tbodt/deoplete-tabnine', { 'do': 'powershell.exe .\install.ps1' }
-else
-  Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
-endif
+" Snippets
+Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
 
 " Ctags
 Plug 'majutsushi/tagbar' " Nerd-tree like menu for tags
 
 " LanguageServer client for NeoVim.
-Plug 'autozimu/LanguageClient-neovim', {
-      \ 'branch': 'next',
-      \ 'do': 'bash install.sh',
-      \ }
+Plug 'neovim/nvim-lspconfig'
 
 " Code display
 Plug 'luochen1990/rainbow' " Various colors for brackets and parentises.
@@ -85,7 +70,6 @@ Plug 'vim-ruby/vim-ruby'
 " Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "" C++
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
-Plug 'zchee/deoplete-clang'
 
 call plug#end()
 
@@ -124,10 +108,10 @@ if !exists("g:os")
 endif
 
 
-" Python host configuration by OS (needed for deoplete)
+" Python host configuration by OS
 if g:os == "Darwin"
-  let g:python_host_prog = '/usr/local/Cellar/pyenv/1.2.13/versions/2.7.14/envs/neovim2/bin/python'
-  let g:python3_host_prog = '/usr/local/Cellar/pyenv/1.2.13/versions/3.7.4/envs/neovim3/bin/python3'
+  let g:python_host_prog = '/usr/local/Cellar/pyenv/2.0.4/versions/2.7.15/envs/neovim2/bin/python'
+  let g:python3_host_prog = '/usr/local/Cellar/pyenv/2.0.4/versions/3.9.6/envs/neovim3/bin/python3'
 elseif g:os == "Linux"
   let g:python_host_prog = '/home/paulo/.pyenv/versions/2.7.18/envs/neovim2/bin/python'
   let g:python3_host_prog = '/home/paulo/.pyenv/versions/3.8.5/envs/neovim3/bin/python3'
