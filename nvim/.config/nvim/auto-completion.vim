@@ -17,7 +17,8 @@ lua << EOF
     lsp.rust_analyzer.setup{}
 EOF
 
-let g:coq_settings = { 'auto_start': 'shut-up', 'clients': { 'tabnine': { 'enabled': v:true }}}
+let g:coq_settings = { 'auto_start': 'shut-up', 'keymap': { 'jump_to_mark': '<c-?>' }, 'clients': { 'tabnine': { 'enabled': v:true }}}
+
 
 " Configure autocompletion menu highlight
 highlight Pmenu ctermbg=247 guibg=#dddbdb
