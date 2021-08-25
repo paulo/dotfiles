@@ -46,3 +46,5 @@
 # machine <gitlab_host>
 #   login <user_name>@<gitlab_host>
 #   password <gitlab_token>
+[init]
+	defaultBranch = main
