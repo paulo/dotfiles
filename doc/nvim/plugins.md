@@ -14,11 +14,7 @@
 
 ### Autocompletion and snippets
 
-- **sirver/ultisnips** (Snippets engine)
-- **honza/vim-snippets** (Snippets are separated from the engine)
-- **Shougo/deoplete.nvim** (Async autocompletion)
-- **roxma/nvim-yarp** (Async autocompletion)
-- **roxma/vim-hug-neovim-rpc** (Async autocompletion)
+- **ms-jpq/coq_nvim** (Autocompletion and snippets engine)
 
 ### Ctags
 
