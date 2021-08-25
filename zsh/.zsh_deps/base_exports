@@ -8,6 +8,7 @@
 export LOCAL_PATH="/usr/local"
 export BASE_PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export BREW_HOME="$LOCAL_PATH/opt"
+export SQLITE_PATH="/usr/local/opt/sqlite/bin"
 
 export ASDF_PATH="$HOME/.asdf/shims"
 export ASDF_DATA_DIR="$HOME/.asdf"
@@ -40,7 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 export PYENV_ROOT="$LOCAL_PATH/opt/pyenv" # PYENV_ROOT="$HOME/.pyenv"
 
 ##### PATH CONFIG #####
-export PATH="$ASDF_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
+export PATH="$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
 #######################
 
 # Fzf configs
