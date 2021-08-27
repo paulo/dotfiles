@@ -8,8 +8,10 @@ endif
 call plug#begin('~/.config/nvim/plugged')
 
 " Directory, file and buffer navigation
-Plug 'scrooloose/nerdtree' " Tree explorer for vim.
-Plug 'Xuyuanp/nerdtree-git-plugin' " NerdTree's git status
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+
+" Navigation and searching
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between vim splits and tmux panes
@@ -39,7 +41,7 @@ Plug 'tpope/vim-sleuth' " Automatically set idententation and tabs on buffers
 Plug 'pboettch/vim-cmake-syntax' " Cmake syntax highlighting
 
 " Code edition
-Plug 'w0rp/ale' " Asynchronous Lint Engine
+" Plug 'w0rp/ale' " Asynchronous Lint Engine
 Plug 'scrooloose/nerdcommenter' " Comment code.
 Plug 'tpope/vim-surround' " Support for surrounding text.
 Plug 'michaeljsmith/vim-indent-object' " Indentation as text objects
@@ -121,7 +123,7 @@ endif
 
 
 source ~/.config/nvim/powerline.vim
-source ~/.config/nvim/nerdtree.vim
+source ~/.config/nvim/tree.vim
 source ~/.config/nvim/navigation.vim
 source ~/.config/nvim/code-display.vim
 source ~/.config/nvim/code-edition.vim
