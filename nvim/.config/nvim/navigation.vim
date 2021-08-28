@@ -56,12 +56,11 @@ command! -bang -nargs=* Rg
       \   <bang>0)
 
 " nnoremap <silent> <leader>f :FzfGFiles<CR> " Only search for git files
-nnoremap <silent> <leader>f :FzfFiles<CR>
-nnoremap <silent> <leader>b :FzfBuffers<CR>
-nnoremap <silent> <leader>wf :FzfWindows<CR>
-" Supports Ag as well
-nnoremap <silent> <leader>/ :Rg<CR>
-nnoremap <silent> <leader>?f :FzfHistory<CR>
+nnoremap <silent> <leader><leader>f :FzfFiles<CR>
+nnoremap <silent> <leader><leader>b :FzfBuffers<CR>
+nnoremap <silent> <leader><leader>w :FzfWindows<CR>
+nnoremap <silent> <leader><leader>/ :Rg<CR> " Supports Ag as well
+nnoremap <silent> <leader><leader>?f :FzfHistory<CR>
 
 " Window spliting and quiting
 nnoremap <silent> <leader>s :split<CR>
@@ -69,16 +68,21 @@ nnoremap <silent> <leader>v :vsplit<CR>
 nnoremap <silent> <leader>q :close<CR>
 
 " Buffer navigation helpers
-nmap <Leader>j :bp<cr> " Go to the previous buffer open
-nmap <Leader>k :bn<cr> " Go to the next buffer open
-nmap <Leader>t :enew<cr> " Open a new empty buffer. Replaces :tabnew
-nmap <Leader>q :bp <BAR> bd #<cr> " Close the current buffer and move to the previous one
+nmap <leader>h :bp<cr> " Go to the previous buffer open
+nmap <leader>l :bn<cr> " Go to the next buffer open
+nmap <leader>t :enew<cr> " Open a new empty buffer. Replaces :tabnew
+nmap <leader>q :bp <BAR> bd #<cr> " Close the current buffer and move to the previous one
 
 " There are multiple choices available when choosing a fold method. <leader><Space> toggles a fold based on the indent level of the current cursor line
 nnoremap <leader><Space> za
 
-" Tagbar
-" nmap <Leader><Leader>d :TagbarToggle
+" Quickfix list settings
+nnoremap <leader><leader>o :copen<cr> " Open the quickfix window
+nnoremap <leader><leader>q :ccl<cr> " Close it
+nnoremap <leader><leader>t :cw<cr> " Open it if there are "errors", close it otherwise (some people prefer this)
+nnoremap <leader>j :cn<cr> " Go to the next error in the window
+nnoremap <leader>k :cp<cr> " Go to the previous error in the window
+nnoremap <leader><leader>k :cnf<cr> " Go to the first error in the next file
 
 " Navigate between vim splits and tmux panes with C-h/j/k/l
 " (https://bluz71.github.io/2017/06/14/a-few-vim-tmux-mappings.html)
@@ -138,3 +142,63 @@ let g:tagbar_type_go = {
       \ 'ctagsbin'  : 'gotags',
       \ 'ctagsargs' : '-sort -silent'
         \ }
+
+" Find files using Telescope command-line sugar.
+nnoremap <silent> <leader>f <cmd>Telescope find_files find_command=rg,--ignore,--hidden,--files<cr>
+nnoremap <silent> <leader>/ <cmd>Telescope live_grep<cr>
+nnoremap <silent> <leader>b <cmd>Telescope buffers<cr>
+nnoremap <silent> <leader>h <cmd>Telescope help_tags<cr>
+
+lua << EOF
+local actions = require('telescope.actions')
+
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '-uu'
+    },
+    prompt_prefix = "🔍 ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    layout_strategy = "flex",
+    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    file_ignore_patterns = { 'node_modules', '.git', 'tags' },
+    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    winblend = 10,
+    use_less = true,
+    path_display = {},
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+    -- Developer configurations: Not meant for general override
+    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker,
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+        ["<esc>"] = actions.close,
+        ["<C-s>"] = actions.select_horizontal,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-u>"] = actions.preview_scrolling_up,
+        ["<C-d>"] = actions.preview_scrolling_down,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+      },
+      n = {
+        ["<esc>"] = actions.close,
+        ["<C-s>"] = actions.select_horizontal,
+        ["<C-v>"] = actions.select_vertical,
+        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist
+      }
+    }
+  }
+}
+EOF

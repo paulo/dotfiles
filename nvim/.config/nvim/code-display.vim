@@ -2,6 +2,10 @@
 hi Search term=reverse cterm=NONE ctermfg=221 ctermbg=125
 hi MatchParen cterm=bold ctermfg=221 ctermbg=125
 hi Visual cterm=bold ctermfg=221 ctermbg=125 guibg=Grey40
+" Configure vertical splits design
+" set fillchars+=vert:\|
+" hi VertSplit cterm=bold ctermfg=221 ctermbg=125 guibg=Grey40
+hi VertSplit cterm=bold ctermfg=8 ctermbg=NONE guibg=NONE
 
 " Number display
 set relativenumber
@@ -49,8 +53,3 @@ set splitright
 
 " Tag management (displays all file tags)
 nmap <F8> :TagbarToggle<CR>
-
-" Configure vertical splits design
-" set fillchars+=vert:\|
-" hi VertSplit cterm=bold ctermfg=221 ctermbg=125 guibg=Grey40
-hi VertSplit cterm=bold ctermfg=8 ctermbg=NONE guibg=NONE

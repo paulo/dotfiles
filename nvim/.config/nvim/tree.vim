@@ -4,7 +4,9 @@ nnoremap <leader>d :NvimTreeToggle<CR>
 " Open Tree at the current file
 nnoremap <silent> <leader><leader>d :NvimTreeFindFile<CR>
 
-" Hide tildes that appear at the end of the buffer
+" Hide tildes that appear at the end of the buffer (replace by whitespace)
+" Careful on editors that remove trailing whitespace, this file needs to be
+" saved with one
 set fcs=eob:\
 
 let g:nvim_tree_ignore = [ '.git', 'node_modules', 'tags', '.DS_Store', 'dist' ] "empty by default
@@ -15,17 +17,15 @@ let g:nvim_tree_auto_resize = 0 "1 by default, will resize the tree to its saved
 let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
 let g:nvim_tree_lsp_diagnostics = 1 "0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
 
+" TODO: Fix (separation between tree and buffer is not visible)
 set termguicolors " this variable must be enabled for colors to be applied properly
 
 lua <<EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
-      { key = "s",                        cb = tree_cb("vsplit") },
-      { key = "v",                        cb = tree_cb("split") },
-      { key = "R",                            cb = tree_cb("refresh") },
-      { key = "i",                            cb = tree_cb("system_open") },
+      { key = "s", cb = tree_cb("vsplit") },
+      { key = "v", cb = tree_cb("split") },
+      { key = "R", cb = tree_cb("refresh") },
+      { key = "i", cb = tree_cb("system_open") },
     }
 EOF
-
-" a list of groups can be found at `:help nvim_tree_highlight`
-" highlight NvimTreeFolderIcon guibg=blue

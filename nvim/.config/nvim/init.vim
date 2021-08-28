@@ -15,6 +15,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between vim splits and tmux panes
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 
 " Themes and powerline
 Plug 'itchyny/lightline.vim'
