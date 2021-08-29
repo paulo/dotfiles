@@ -19,12 +19,6 @@ EOF
 
 let g:coq_settings = { 'auto_start': 'shut-up', 'keymap': { 'jump_to_mark': '<c-?>' }, 'clients': { 'tabnine': { 'enabled': v:true }}}
 
-
-" Configure autocompletion menu highlight
-highlight Pmenu ctermbg=247 guibg=#dddbdb
-highlight PmenuSel cterm=bold ctermbg=yellow guifg=#dddd00 guibg=#1f82cd
-highlight PmenuSbar ctermbg=0 guibg=#dddbdb
-
 " This will show the popup menu even if there's only one match (menuone),
 " prevent automatic selection (noselect) and prevent automatic text injection
 " into the current line (noinsert).

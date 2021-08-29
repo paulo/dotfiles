@@ -1,17 +1,6 @@
-" Highlight color for searching and parentheses/brackets
-hi Search term=reverse cterm=NONE ctermfg=221 ctermbg=125
-hi MatchParen cterm=bold ctermfg=221 ctermbg=125
-hi Visual cterm=bold ctermfg=221 ctermbg=125 guibg=Grey40
-" Configure vertical splits design
-" set fillchars+=vert:\|
-" hi VertSplit cterm=bold ctermfg=221 ctermbg=125 guibg=Grey40
-hi VertSplit cterm=bold ctermfg=8 ctermbg=NONE guibg=NONE
-
 " Number display
 set relativenumber
 set nu
-hi LineNr ctermfg=yellow cterm=bold
-hi CursorLineNr ctermfg=white cterm=bold
 
 " Rainbow parenthesis configuration
 let g:rainbow_active = 1
@@ -40,9 +29,6 @@ let g:indentLine_setConceal = 0
 let &showbreak = ' ↳ '
 set wrap
 set cpo=n
-
-" Go files have an indentation of 4 spaces
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
 " Open new split panes to right and bottom, which feels more natural than Vim’s default
 set splitbelow

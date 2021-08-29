@@ -7,6 +7,10 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
+" Themes and powerline
+Plug 'itchyny/lightline.vim'
+Plug 'jacoborus/tender.vim'
+
 " Directory, file and buffer navigation
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
@@ -17,10 +21,6 @@ Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between vim splits and tmux panes
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
-" Themes and powerline
-Plug 'itchyny/lightline.vim'
-Plug 'jacoborus/tender.vim'
 
 " Auto-complete engine
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
@@ -35,7 +35,7 @@ Plug 'majutsushi/tagbar' " Nerd-tree like menu for tags
 Plug 'neovim/nvim-lspconfig'
 
 " Code display
-Plug 'luochen1990/rainbow' " Various colors for brackets and parentises.
+" Plug 'luochen1990/rainbow' " Various colors for brackets and parentises.
 Plug 'Yggdroot/indentLine' " Indentation lines.
 Plug 'Chiel92/vim-autoformat'
 Plug 'ConradIrwin/vim-bracketed-paste' " Avoid indenting when pasting
@@ -62,10 +62,9 @@ Plug 'haya14busa/is.vim' " Incremental search and clear highlighting
 Plug 'tpope/vim-repeat' " Enhances . command
 Plug 'tpope/vim-unimpaired' " Complementary pairs of mappings
 Plug 'kshenoy/vim-signature' " Support for marks
-" Plug 'pechorin/any-jump.vim' " Find code definition/usage
 
 " Language support
-Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "" Ruby
@@ -77,17 +76,18 @@ Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 
 call plug#end()
 
+" Set colorscheme
+" Override: https://gist.github.com/romainl/379904f91fa40533175dfaec4c833f2f
+syntax enable
+colorscheme tender
+
 " Leader key
 let mapleader = ","
 " Local leader key (for local buffers and less common mappings)
 let maplocalleader = " "
 
-" Configure access to private gitlab repos by fugitive
-let g:fugitive_gitlab_domains = ['https://gitlab.otters.xyz']
-
 set nocompatible
 filetype plugin on
-syntax enable
 " filetype plugin indent on " Avoid auto identation due to lag in big files
 set visualbell " No sounds
 
@@ -111,7 +111,6 @@ if !exists("g:os")
     endif
 endif
 
-
 " Python host configuration by OS
 if g:os == "Darwin"
   let g:python_host_prog = '/usr/local/Cellar/pyenv/2.0.4/versions/2.7.15/envs/neovim2/bin/python'
@@ -122,7 +121,6 @@ elseif g:os == "Linux"
 elseif g:os == "Windows"
   " not supported
 endif
-
 
 source ~/.config/nvim/powerline.vim
 source ~/.config/nvim/tree.vim
@@ -138,14 +136,14 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 
+" Go files have an indentation of 4 spaces
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+
 " Write remaining tabs as 4 spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 " Clear highlighting by redrawing screen
 " noremap <silent> <C-l> :nohl<CR><C-l> " <Ctrl-l> redraws the screen and removes any search highlighting.
-
-" Enable JSX syntax highlighting and indenting by default in .js files
-let g:jsx_ext_required = 0
 
 " Autosave and autoread
 " Will automatically save to disk the currently edited buffer upon leaving insert mode as well as after a text edit has occurred.
@@ -199,3 +197,51 @@ endif
 
 " Remove showing cursor position in the file
 set noshowcmd noruler
+
+" https://unix.stackexchange.com/questions/404414/print-true-color-24-bit-test-pattern
+" https://gist.github.com/wmeng223/60b51b30eb758bd7a2a648436da1e562
+set termguicolors " this variable must be enabled for colors to be applied properly
+
+" Configure autocompletion menu highlight
+set pumblend=10 " Semi-transparent pop-up menu
+hi Pmenu ctermbg=247 guibg=#424242
+hi PmenuSel cterm=bold ctermbg=yellow guifg=#0EB1D2 guibg=#686963 gui=bold
+hi PmenuSbar ctermbg=0 guibg=#424242 guifg=#424242
+hi PmenuThumb ctermbg=0 guibg=#F7EF99 guifg=#F7EF99
+
+" Number display
+hi LineNr ctermfg=lightyellow cterm=bold guifg=#F7EF99 gui=bold
+hi CursorLineNr ctermfg=white cterm=bold guifg=white gui=bold
+
+" Highlight color for searching and parentheses/brackets
+hi Search term=reverse cterm=NONE ctermfg=221 ctermbg=125 guifg=#81F499 guibg=NONE
+hi MatchParen cterm=bold ctermfg=221 ctermbg=125 guifg=#0EB1D2 guibg=NONE
+hi Visual cterm=bold ctermfg=221 ctermbg=125 guibg=Grey30
+
+" Configure vertical splits design
+hi VertSplit cterm=bold ctermfg=7 ctermbg=NONE guibg=NONE guifg=Grey40
+
+" Configure error coloring
+hi LspDiagnosticsVirtualTextError guifg=#D56062 gui=bold ctermfg=Red
+
+" Configure file explorer tree
+hi NvimTreeFolderName guifg=#A3CEF1 gui=bold ctermfg=Blue
+hi NvimTreeOpenedFolderName guifg=#CAE3F7 gui=bold ctermfg=Blue
+hi NvimTreeRootFolder guifg=#ECBEB4 gui=bold ctermfg=Blue
+hi NvimTreeFolderIcon guifg=#A3CEF1 ctermfg=Blue
+hi NvimTreeGitDirty guifg=#F97068 gui=bold ctermfg=Blue
+
+" Configure vim-go highlighting
+let g:go_highlight_structs = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_function_parameters = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_types = 0
+let g:go_highlight_fields = 1
+let g:go_highlight_generate_tags = 1
+let g:go_highlight_variable_declarations = 1
+let g:go_highlight_variable_assignments = 0

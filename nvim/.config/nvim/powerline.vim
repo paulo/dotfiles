@@ -4,8 +4,8 @@
 
 function! LightlineFugitive()
   let fname = expand('%:t')
-  if fname =~ 'NERD_tree'
-    return 'NERD'
+  if fname =~ 'NvimTree'
+    return ''
   elseif exists('*fugitive#head')
     let branch = fugitive#head()
     return branch !=# '' ? ' '.branch : ''
@@ -15,7 +15,7 @@ endfunction
 
 function! NerdPercent()
   let fname = expand('%:t')
-  if fname =~ 'NERD_tree'
+  if fname =~ 'NvimTree'
     return ''
   end
   return line('.') * 100 / line('$') . '%'
@@ -23,7 +23,7 @@ endfunction
 
 " Based of itchyny/lightline-powerful
 let g:lightline = {
-      \   'colorscheme': 'wombat',
+      \   'colorscheme': 'tender',
       \   'active': {
       \     'left':[ [ 'mode', 'paste' ], [ 'gitbranch', 'filename' ],
       \     ],
@@ -66,12 +66,6 @@ let g:lightline = {
 
 " Get rid of insert in command line
 set noshowmode
-
-" Enable true colors
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-
-" Set colorscheme
-colorscheme tender
 
 " For git gutter
 hi clear SignColumn

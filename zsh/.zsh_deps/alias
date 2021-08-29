@@ -48,11 +48,6 @@ alias gfind='fzf'
 # fd -e md foo    # Match by `md` file extension
 # fd '^[0-9]'     # List files starting with a digit
 
-
-# Tmux
-alias tx='tmuxinator'
-alias tmux="TERM=xterm-256color tmux"
-
 # Nvim
 alias v="$EDITOR"
 
