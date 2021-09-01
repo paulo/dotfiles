@@ -67,6 +67,8 @@ Plug 'kshenoy/vim-signature' " Support for marks
 " Plug 'sheerun/vim-polyglot'
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"" Rust
+Plug 'rust-lang/rust.vim'
 "" Ruby
 Plug 'vim-ruby/vim-ruby'
 "" Python
@@ -113,8 +115,8 @@ endif
 
 " Python host configuration by OS
 if g:os == "Darwin"
-  let g:python_host_prog = '/usr/local/Cellar/pyenv/2.0.4/versions/2.7.15/envs/neovim2/bin/python'
-  let g:python3_host_prog = '/usr/local/Cellar/pyenv/2.0.4/versions/3.9.6/envs/neovim3/bin/python3'
+  let g:python_host_prog = '/usr/local/Cellar/pyenv/2.0.6/versions/2.7.15/envs/neovim2/bin/python'
+  let g:python3_host_prog = '/usr/local/Cellar/pyenv/2.0.6/versions/3.9.6/envs/neovim3/bin/python3'
 elseif g:os == "Linux"
   let g:python_host_prog = '/home/paulo/.pyenv/versions/2.7.18/envs/neovim2/bin/python'
   let g:python3_host_prog = '/home/paulo/.pyenv/versions/3.8.5/envs/neovim3/bin/python3'
