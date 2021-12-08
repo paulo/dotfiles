@@ -27,8 +27,6 @@ let g:indentLine_setConceal = 0
 
 " Show text wrap on the line number
 let &showbreak = ' ↳ '
-set wrap
-set cpo=n
 
 " Open new split panes to right and bottom, which feels more natural than Vim’s default
 set splitbelow

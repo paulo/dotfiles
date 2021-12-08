@@ -32,8 +32,8 @@ let g:fzf_buffers_jump = 1
 " Default extra key bindings
 let g:fzf_action = {
             \ 'ctrl-t': 'tab split',
-            \ 'ctrl-i': 'split',
-            \ 'ctrl-s': 'vsplit' }
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit' }
 
 " Default fzf layout
 let g:fzf_layout = { 'down': '~20%' }

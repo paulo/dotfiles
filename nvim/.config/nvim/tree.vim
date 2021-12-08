@@ -17,14 +17,15 @@ let g:nvim_tree_auto_resize = 1 "1 by default, will resize the tree to its saved
 let g:nvim_tree_group_empty = 0 " 0 by default, compact folders that only contain a single folder into one node in the file tree
 let g:nvim_tree_lsp_diagnostics = 0 "0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
 let g:nvim_tree_update_cwd = 0
+let g:nvim_tree_disable_window_picker = 1
 " let g:nvim_tree_disable_netrw = 1
 " let g:nvim_tree_hijack_netrw = 0
 
 lua <<EOF
     local tree_cb = require'nvim-tree.config'.nvim_tree_callback
     vim.g.nvim_tree_bindings = {
-      { key = "s", cb = tree_cb("vsplit") },
-      { key = "v", cb = tree_cb("split") },
+      { key = "v", cb = tree_cb("vsplit") },
+      { key = "s", cb = tree_cb("split") },
       { key = "R", cb = tree_cb("refresh") },
       { key = "i", cb = tree_cb("system_open") },
     }

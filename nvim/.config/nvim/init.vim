@@ -141,6 +141,10 @@ autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
 " Go files have an indentation of 4 spaces
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 
+" rusty-tags configuration (https://github.com/dan-t/rusty-tags)
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+
 " Write remaining tabs as 4 spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
@@ -247,3 +251,8 @@ let g:go_highlight_fields = 1
 let g:go_highlight_generate_tags = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_highlight_variable_assignments = 0
+
+" Wrap text
+set textwidth=80
+set wrap
+set cpo=n
