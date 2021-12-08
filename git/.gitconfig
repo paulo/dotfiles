@@ -1,46 +1,47 @@
 # This is Git's per-user configuration file.
 [user]
 	name = Paulo Araújo
-	email = paulo.araujo@cabify.com
+	email = paulo.araujo@netlify.com
+
 [user]
 	name = Paulo
 	email = paulorccaraujo@gmail.com
+
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = nvim
-	attributesfile = /Users/pauloaraujo/.gitattributes
-        pager = delta
+    	editor = nvim
+    	attributesfile = /Users/pauloaraujo/.gitattributes
+    	pager = delta
+
 [push]
 	default = current
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-
-[url "git@github.com:"]
-        insteadOf = https://github.com/
+    	smudge = git-lfs smudge -- %f
+    	process = git-lfs filter-process
+    	required = true
 
 [alias]
 	cb = branch --show-current
-	mr = !sh -c 'git push -o merge_request.create -o merge_request.target=master \
+    	mr = !sh -c 'git push -o merge_request.create -o merge_request.target=master \
 		-o merge_request.merge_when_pipeline_succeeds -o merge_request.remove_source_branch \
 		-o merge_request.title=\"$1\" -o merge_request.description=\"$2\" \
 		origin $(git cb)' -
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-    features = line-numbers decorations
-    whitespace-error-style = 22 reverse
-    plus-style = "syntax #012800"
-    minus-style = "syntax #340001"
-    navigate = true
+	features = line-numbers decorations
+    	whitespace-error-style = 22 reverse
+    	plus-style = "syntax #012800"
+    	minus-style = "syntax #340001"
+    	navigate = true
 
 [delta "decorations"]
-    commit-decoration-style = bold yellow box ul
-    file-style = bold yellow ul
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
 
 # To access gitlab, please configure the .netrc with the following structure:
 # machine <gitlab_host>
@@ -48,3 +49,5 @@
 #   password <gitlab_token>
 [init]
 	defaultBranch = main
+[credential]
+	helper = store
