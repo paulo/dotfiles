@@ -6,6 +6,11 @@ DS_Store
 
 # CTags
 tags
+rusty-tags.vi
 
 # Intellij
 .idea
+
+.vscode/launch.json
+.jshintrc
+lambda-nodejs14.x

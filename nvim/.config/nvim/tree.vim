@@ -64,8 +64,8 @@ lua <<EOF
         mappings = {
           custom_only = false,
           list = {
-              { key = "s", cb = tree_cb("vsplit") },
-              { key = "v", cb = tree_cb("split") },
+              { key = "v", cb = tree_cb("vsplit") },
+              { key = "s", cb = tree_cb("split") },
               { key = "R", cb = tree_cb("refresh") },
               { key = "i", cb = tree_cb("system_open") },
           }
