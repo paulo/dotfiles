@@ -7,7 +7,7 @@ nnoremap <silent> <leader><leader>d :NvimTreeFindFile<CR>
 " Hide tildes that appear at the end of the buffer (replace by whitespace)
 " Careful on editors that remove trailing whitespace, this file needs to be
 " saved with one
-set fcs=eob:\
+set fcs=eob:\ 
 
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_group_empty = 0 " 0 by default, compact folders that only contain a single folder into one node in the file tree
