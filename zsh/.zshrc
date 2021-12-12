@@ -50,7 +50,7 @@ export ZSH_HIGHLIGHT_STYLES[path]=none
 
 # Init pyenv and virtual-env
 # TODO: Init by env var
-eval "$(pyenv init -)"
+eval "$(pyenv init - --no-rehash)"
 eval "$(pyenv virtualenv-init -)"
 
 # Init zoxide (https://github.com/ajeetdsouza/zoxide)
