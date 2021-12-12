@@ -36,3 +36,24 @@ tags
 
 # Secrets and private stuff
 zsh/.zsh_deps/private
+
+vscode/Library/Application\ Support/Code/Backups
+vscode/Library/Application\ Support/Code/Cache
+vscode/Library/Application\ Support/Code/Cached*
+vscode/Library/Application\ Support/Code/Cookies*
+vscode/Library/Application\ Support/Code/Crashpad*
+vscode/Library/Application\ Support/Code/GPUCache
+vscode/Library/Application\ Support/Code/Quota*
+vscode/Library/Application\ Support/Code/Service*
+vscode/Library/Application\ Support/Code/machineid
+vscode/Library/Application\ Support/Code/Code*
+vscode/Library/Application\ Support/Code/Local*
+vscode/Library/Application\ Support/Code/Network*
+vscode/Library/Application\ Support/Code/Session*
+vscode/Library/Application\ Support/Code/TransportSecurity
+vscode/Library/Application\ Support/Code/languagepacks*
+vscode/Library/Application\ Support/Code/logs*
+vscode/Library/Application\ Support/Code/storage*
+vscode/Library/Application\ Support/Code/User/globalStorage
+vscode/Library/Application\ Support/Code/User/workspaceStorage
+
