@@ -45,5 +45,10 @@
     "redhat.telemetry.enabled": true,
     "window.zoomLevel": 1,
     "editor.lineHeight": 0,
-    "editor.fontSize": 12
+    "editor.fontSize": 11,
+    "editor.formatOnSave": true,
+    "terminal.integrated.fontSize": 11,
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust"
+    }
 }
