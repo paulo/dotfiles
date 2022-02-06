@@ -4,25 +4,35 @@
 #         Source ZGen framework
 ############################################
 
-# Don't allow compinit to be called by zgen (already called by pretzo completion)
+# Don't allow compinit to be called by zgenom (already called by pretzo completion)
 export ZGEN_AUTOLOAD_COMPINIT=0
 
-# Load zgen
-source "${HOME}/.zgen/zgen.zsh"
+# load zgenom
+source "${HOME}/.zgenom/zgenom.zsh"
+
+# Check for plugin and zgenom updates every 7 days
+# This does not increase the startup time.
+zgenom autoupdate
+
+setopt promptsubst
 
 # If the init script doesn't exist
-if ! zgen saved; then
-  zgen prezto
+if ! zgenom saved; then
+  zgenom prezto
 
   # Stolen from oh-my-zsh since I don't want to bloat the config
-  zgen load ~/.zsh_plugins/git.plugin.zsh # Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
-  zgen load ~/.zsh_plugins/search_keys.plugin.zsh # Autocompletion with up arrow on the terminal.
+  zgenom load ~/.zsh_plugins/git.plugin.zsh # Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
+  zgenom load ~/.zsh_plugins/search_keys.plugin.zsh # Autocompletion with up arrow on the terminal.
 
   ###################################################################3
 
-  zgen load djui/alias-tips # Gives a tip when you use a command that as a defined alias.
-  zgen load b4b4r07/enhancd # cd with fuzzy finding. Dependecy: jhawthorn/fzy. Usage: cd
-  zgen load paulirish/git-open # Open github from terminal
+  zgenom load djui/alias-tips # Gives a tip when you use a command that as a defined alias.
+  zgenom load b4b4r07/enhancd # cd with fuzzy finding. Dependency: jhawthorn/fzy. Usage: cd
+  zgenom load paulirish/git-open # Open github from terminal
 
-  zgen save
+  zgenom save
 fi
+
+# Hack to fix this plugin since zgenom is not executing the init script
+# correctly
+source "$HOME/.zgenom/sources/b4b4r07/enhancd/___/init.sh"
