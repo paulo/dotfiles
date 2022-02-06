@@ -43,7 +43,6 @@ Plug 'tpope/vim-sleuth' " Automatically set idententation and tabs on buffers
 Plug 'pboettch/vim-cmake-syntax' " Cmake syntax highlighting
 
 " Code edition
-" Plug 'w0rp/ale' " Asynchronous Lint Engine
 Plug 'scrooloose/nerdcommenter' " Comment code.
 Plug 'tpope/vim-surround' " Support for surrounding text.
 Plug 'michaeljsmith/vim-indent-object' " Indentation as text objects
@@ -64,15 +63,12 @@ Plug 'tpope/vim-unimpaired' " Complementary pairs of mappings
 Plug 'kshenoy/vim-signature' " Support for marks
 
 " Language support
-" Plug 'sheerun/vim-polyglot'
 "" Go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "" Rust
 Plug 'rust-lang/rust.vim'
 "" Ruby
 Plug 'vim-ruby/vim-ruby'
-"" Python
-" Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 "" C++
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 
@@ -115,10 +111,11 @@ endif
 
 " Python host configuration by OS
 if g:os == "Darwin"
-  let g:python_host_prog = '/usr/local/Cellar/pyenv/2.0.6/versions/2.7.15/envs/neovim2/bin/python'
-  let g:python3_host_prog = '/usr/local/Cellar/pyenv/2.0.6/versions/3.9.6/envs/neovim3/bin/python3'
+  " let g:python_host_prog = '/usr/local/Cellar/pyenv/2.0.6/versions/2.7.15/envs/neovim2/bin/python'
+  " let g:python3_host_prog = '/usr/local/Cellar/pyenv/2.2.2/versions/3.9.8/envs/neovim3/bin/python3'
+  let g:python3_host_prog = '~/.pyenv/versions/3.9.8/envs/neovim3/bin/python3'
 elseif g:os == "Linux"
-  let g:python_host_prog = '/home/paulo/.pyenv/versions/2.7.18/envs/neovim2/bin/python'
+  " let g:python_host_prog = '/home/paulo/.pyenv/versions/2.7.18/envs/neovim2/bin/python'
   let g:python3_host_prog = '/home/paulo/.pyenv/versions/3.8.5/envs/neovim3/bin/python3'
 elseif g:os == "Windows"
   " not supported
