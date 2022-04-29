@@ -7,7 +7,7 @@
 # Tools
 export LOCAL_PATH="/usr/local"
 export BASE_PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export BREW_HOME="$LOCAL_PATH/opt"
+export BREW_HOME="/opt/homebrew/bin"
 export SQLITE_PATH="/usr/local/opt/sqlite/bin"
 
 export ASDF_PATH="$HOME/.asdf/shims"
@@ -27,7 +27,7 @@ export LANG=en_US.UTF-8
 export EDITOR='nvim'
 export SAVEHIST=10000
 # export HISTFILE=~/.zsh_history Not needed anymore due to pretzo. New value is ~/.zhistory
-export ENHANCD_FILTER=fzy
+export ENHANCD_FILTER=fzf:fzy
 export CACHE_DIR=${XDG_CACHE_DIR:-$HOME/.cache}
 
 # Go configs
@@ -39,10 +39,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # Load NVM
 
 # Python configs
-export PYENV_ROOT="$LOCAL_PATH/opt/pyenv" # PYENV_ROOT="$HOME/.pyenv"
+export PYENV_ROOT="$HOME/.pyenv" # PYENV_ROOT="$HOME/.pyenv"
 
 ##### PATH CONFIG #####
-export PATH="$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
+export PATH="$BREW_HOME:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
 #######################
 
 # Fzf configs
