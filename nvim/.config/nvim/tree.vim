@@ -1,4 +1,4 @@
-" https://github.com/kyazdani42/nvim-tree.lua
+" https://github.com/kyazdani42/nvim-tree.luatree
 " Open Tree
 nnoremap <leader>d :NvimTreeToggle<CR>
 " Open Tree at the current file
@@ -12,6 +12,9 @@ set fcs=eob:\
 let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
 let g:nvim_tree_group_empty = 0 " 0 by default, compact folders that only contain a single folder into one node in the file tree
 
+" automatically close the tab/vim when nvim-tree is the last window in the tab
+" autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+
 lua <<EOF
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
@@ -20,14 +23,9 @@ require "nvim-tree".setup {
     hijack_netrw = true,
     open_on_setup = false,
     ignore_ft_on_setup = {},
-    auto_close = true, -- false by default, closes the tree when it's the last window
     open_on_tab = false,
     hijack_cursor = false,
     update_cwd = false,
-    update_to_buf_dir = {
-        enable = true,
-        auto_open = true
-    },
     diagnostics = {
         -- false by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
         enable = false,
@@ -61,7 +59,6 @@ require "nvim-tree".setup {
         height = 30,
         hide_root_folder = false,
         side = "left",
-        auto_resize = true, -- false by default, will resize the tree to its saved width when opening a file
         mappings = {
             custom_only = false,
             list = {
@@ -83,7 +80,8 @@ require "nvim-tree".setup {
         open_file = {
             window_picker = {
                 enable = false
-            }
+            },
+            resize_window = true,  -- false by default, will resize the tree to its saved width when opening a file
         }
     }
 }
