@@ -47,7 +47,7 @@ require "nvim-tree".setup {
     },
     filters = {
         dotfiles = false,
-        custom = {".git", "node_modules", "tags", ".DS_Store", "dist"}
+        custom = {".git$", "node_modules", "tags", ".DS_Store", "dist"}
     },
     git = {
         enable = true,

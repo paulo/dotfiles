@@ -56,4 +56,6 @@ vscode/Library/Application\ Support/Code/logs*
 vscode/Library/Application\ Support/Code/storage*
 vscode/Library/Application\ Support/Code/User/globalStorage
 vscode/Library/Application\ Support/Code/User/workspaceStorage
+vscode/Library/Application\ Support/Code/User/sync
+vscode/Library/Application\ Support/Code/databases
 
