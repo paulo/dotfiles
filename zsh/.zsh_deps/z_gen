@@ -27,7 +27,7 @@ if ! zgenom saved; then
   ###################################################################3
 
   zgenom load djui/alias-tips # Gives a tip when you use a command that as a defined alias.
-  zgenom load b4b4r07/enhancd # cd with fuzzy finding. Dependency: jhawthorn/fzy. Usage: cd
+  # zgenom load b4b4r07/enhancd # cd with fuzzy finding. Dependency: jhawthorn/fzy. Usage: cd
   zgenom load paulirish/git-open # Open github from terminal
 
   zgenom save
@@ -35,4 +35,4 @@ fi
 
 # Hack to fix this plugin since zgenom is not executing the init script
 # correctly
-source "$HOME/.zgenom/sources/b4b4r07/enhancd/___/init.sh"
+# source "$HOME/.zgenom/sources/b4b4r07/enhancd/___/init.sh"
