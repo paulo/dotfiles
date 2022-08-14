@@ -72,6 +72,9 @@ Plug 'vim-ruby/vim-ruby'
 "" C++
 Plug 'rhysd/vim-clang-format', {'for' : ['c', 'cpp']}
 
+" Lint
+Plug 'mfussenegger/nvim-lint'
+
 call plug#end()
 
 " Set colorscheme

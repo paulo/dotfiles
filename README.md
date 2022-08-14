@@ -3,7 +3,7 @@
 My dotfiles, based on the 3 things I value the most when working on the terminal:
 
 - Editing capabilities
-- Accesibility
+- Accessibility
 - Performance
 
 These are not setup to cover everyone's needs. In fact, they relate to my current work and change every other week.
@@ -12,7 +12,7 @@ If you like what you see and plan on using it, please first take a look at the s
 
 ## Overview
 
-The aim is for the workspace to be simple enough that's not full of cluter but still shows everything I need to see at any given time.
+The aim is for the workspace to be simple enough that's not full of clutter but still shows everything needed at any given time.
 
 ![overview](img/overview.png)
 
@@ -46,7 +46,7 @@ Currently using [Gnu Stow](https://www.gnu.org/software/stow/) to manage the fil
 
 Non-stowable packages are suffixed with `*-config`.
 
-### Using Brew
+### Using brew
 
 **Create Brewfile in the current directory**
 
@@ -56,7 +56,7 @@ Non-stowable packages are suffixed with `*-config`.
 
 `brew bundle`
 
-_Note:_ Check `brew bundle -h` for further info.
+_Note:_ `brew bundle -h` for further info.
 
 ### Using npm
 
@@ -74,4 +74,4 @@ _Note:_ Check `brew bundle -h` for further info.
 - [ ] Install scripts + Makefile
 - [ ] Sublime Text config
 - [ ] Improve where files are localed (symlinked into). Most of the files are sourced according to a root env var anyway, so maybe we can come up with some kind of organization.
-- [ ] Document my choices for shell optimisation
+- [ ] Document the choices for shell optimisation

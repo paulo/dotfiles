@@ -19,7 +19,7 @@ zplugin ice svn wait"0" silent ; zplugin snippet OMZ::plugins/z
 zplugin ice wait"0" silent; zplugin light djui/alias-tips
 
 # cd with fuzzy finding. Dependecy: jhawthorn/fzy. Usage: cd
-zplugin ice wait"0" silent ; zplugin light b4b4r07/enhancd
+# zplugin ice wait"0" silent ; zplugin light b4b4r07/enhancd
 
 # OMZ supported libs
 omz_libs=(

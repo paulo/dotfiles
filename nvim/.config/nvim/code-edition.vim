@@ -60,3 +60,12 @@ autocmd FileType javascript.jsx setlocal commentstring={/*\ %s\ */}
 
 " Autoformat cpp files (inspired by https://gist.github.com/p1v0t/42a34744b5e4f5980e5f4e1c980ec859)
 let g:clang_format#auto_format=1
+
+" nvim-lint (only markdown with vale enabled for now, code goes through the lsp)
+lua << EOF
+require('lint').linters_by_ft = {
+  markdown = {'vale',},
+}
+EOF
+
+au BufWritePost *.md lua require('lint').try_lint()
