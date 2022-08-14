@@ -9,9 +9,6 @@ nnoremap <silent> <leader><leader>d :NvimTreeFindFile<CR>
 " saved with one
 set fcs=eob:\
 
-let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
-let g:nvim_tree_group_empty = 0 " 0 by default, compact folders that only contain a single folder into one node in the file tree
-
 " automatically close the tab/vim when nvim-tree is the last window in the tab
 " autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
 
@@ -83,6 +80,10 @@ require "nvim-tree".setup {
             },
             resize_window = true,  -- false by default, will resize the tree to its saved width when opening a file
         }
+    },
+    renderer = {
+        highlight_git = true, -- false by default, will enable file highlight for git attributes (can be used without the icons).
+        group_empty = false -- false by default, compact folders that only contain a single folder into one node in the file tree
     }
 }
 EOF
