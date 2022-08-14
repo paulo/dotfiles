@@ -9,7 +9,15 @@
 lua << EOF
     local lsp = require "lspconfig"
 
-    lsp.gopls.setup{}
+    lsp.gopls.setup{
+    settings = {
+        gopls =  {
+            env = {
+                GOOS="linux"
+                }
+            }
+        }
+    }
     lsp.solargraph.setup{}
     lsp.pyright.setup{}
     lsp.bashls.setup{}
