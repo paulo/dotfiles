@@ -41,6 +41,10 @@ export NVM_DIR="$HOME/.nvm"
 # Python configs
 export PYENV_ROOT="$HOME/.pyenv" # PYENV_ROOT="$HOME/.pyenv"
 
+# Rust configs
+export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
+
+
 ##### PATH CONFIG #####
 export PATH="$BREW_HOME:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
 #######################
