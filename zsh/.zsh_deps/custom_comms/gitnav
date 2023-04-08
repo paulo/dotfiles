@@ -2,10 +2,6 @@
 
 nav_command_name="gitnav"
 mkdir -p "$CACHE_DIR/$nav_command_name"
-nav_projects_cache="$CACHE_DIR/$nav_command_name/gitlab_projects"
-access_level=30 # at least developer role
-per_page=100
-host_prefix="https://gitlab.otters.xyz/"
 
 format_cowsay_lolcat() {
     cat
@@ -13,18 +9,22 @@ format_cowsay_lolcat() {
 command -v cowsay >/dev/null 2>&1 && command -v lolcat >/dev/null 2>&1 && \
     { format_cowsay_lolcat() { cowsay -f moose -W80 | lolcat }; }
 
-# gitnav excludes personal repos (repos with a dot in the root dirname)
+# gitnav allows you to navigate to a repo under your org structure, either in
+# gitlab or github (have to change the code to switch between the two right now)
+# it excludes personal repos (repos with a dot in the root dirname)
 gitnav() {
+    mkdir -p "$CACHE_DIR/$nav_command_name"
+
     query=""
     if [[ $# -ge 1 ]]; then
         query="$@"
-        repo=$(_gitlab_get_project_urls | fzf --filter="$query" --no-sort)
+        repo=$(_github_get_project_urls | fzf --filter="$query" --no-sort)
         if [[ ! -z "$repo" && $(wc -l <<< "$repo") == 1 ]]; then
             gitcd "$repo"
             return 0
         fi
     fi
-    repo=$(_gitlab_get_project_urls | fzf --query="$query")
+    repo=$(_github_get_project_urls | fzf --query="$query")
     if [[ -z "$repo" ]];
     then
         # User didn't select anything
@@ -35,8 +35,10 @@ gitnav() {
 
 # gitnavall doesn't exclude any repo from the search
 gitnavall() {
+    mkdir -p "$CACHE_DIR/$nav_command_name"
+
     valid
-    repo=$(_gitlab_get_project_urls | fzf)
+    repo=$(_github_get_project_urls | fzf)
     if [[ -z "$repo" ]];
     then
         # User didn't select anything
@@ -79,25 +81,45 @@ gitcd() {
 }
 
 _gitlab_get_project_urls() {
-    if [ -f $nav_projects_cache ]
+    if [ -f $gitlab_nav_projects_cache ]
     then
         # if the cache exists, output the contents as to not wait for the api calls...
         # ...and update cache in the background silently
-        cat $nav_projects_cache
-        (_update_nav_cache_file &)
+        cat $gitlab_nav_projects_cache
+        (_gitlab_update_nav_cache_file &)
     else
         # if it does not exist, create the cache file, populate it sync and retrieve its contents
-        touch $nav_projects_cache
-        _update_nav_cache_file
+        touch $gitlab_nav_projects_cache
+        _gitlab_update_nav_cache_file
     fi
 }
 
-_update_nav_cache_file() {
+_github_get_project_urls() {
+    if [ -f $github_nav_projects_cache ]
+    then
+        # if the cache exists, output the contents as to not wait for the api calls...
+        # ...and update cache in the background silently
+        cat $github_nav_projects_cache
+        (_github_update_nav_cache_file &)
+    else
+        # if it does not exist, create the cache file, populate it sync and retrieve its contents
+        touch $github_nav_projects_cache
+        _github_update_nav_cache_file
+    fi
+}
+
+#### Update/fetch Gitlab cache file
+gitlab_nav_projects_cache="$CACHE_DIR/$nav_command_name/gitlab_projects"
+gitlab_access_level=30 # at least developer role
+gitlab_per_page=100
+gitlab_host_prefix="https://gitlab.otters.xyz/"
+
+_gitlab_update_nav_cache_file() {
     page=1
     while :
     do
         # Fetch and extract namespaces from all the pages till we get an empty response
-        page_content=`curl --header "Private-Token: $GITLAB_ACCESS_TOKEN" "https://$GITLAB_HOST/api/v4/projects?simple=true&per_page=$per_page&page=$page&min_access_level=$access_level&order_by=updated_at" 2> /dev/null | jq -r '.[] | .web_url'`
+        page_content=`curl --header "Private-Token: $GITLAB_ACCESS_TOKEN" "https://$GITLAB_HOST/api/v4/projects?simple=true&per_page=$gitlab_per_page&page=$gitlab_page&min_access_level=$gitlab_access_level&order_by=updated_at" 2> /dev/null | jq -r '.[] | .web_url'`
         if [ -z "$page_content" ]
         then
             break
@@ -109,9 +131,41 @@ _update_nav_cache_file() {
 
     echo $all_project_namespaces |
         sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | # remove whitespaces
-        sed -e "s~^$host_prefix~~" | # remove host prefix
+        sed -e "s~^$gitlab_host_prefix~~" | # remove host prefix
         sort |
-        comm -13 $nav_projects_cache - |         # append to the projects cache
-        tee -a $nav_projects_cache &&
-        sort -o $nav_projects_cache $nav_projects_cache # keep the projects cache sorted
+        comm -13 $gitlab_nav_projects_cache - |         # append to the projects cache
+        tee -a $gitlab_nav_projects_cache &&
+        sort -o $gitlab_nav_projects_cache $gitlab_nav_projects_cache # keep the projects cache sorted
+}
+
+#### Update/fetch Github cache file
+
+github_nav_projects_cache="$CACHE_DIR/$nav_command_name/github_projects"
+github_access_level=30 # at least developer role
+github_per_page=100
+github_host_prefix="https://github.com/"
+
+# TODO
+_github_update_nav_cache_file() {
+    page=1
+    while :
+    do
+        # Fetch and extract namespaces from all the pages till we get an empty response
+        page_content=`curl -H 'Accept: application/vnd.github+json' -H "Authorization: $GITHUB_ACCESS_TOKEN" "https://api.github.com/user/repos?sort=updated&per_page=$github_per_page&page=$page" 2> /dev/null | jq -r '.[] | .clone_url'`
+        if [ -z "$page_content" ]
+        then
+            break
+        else
+            all_project_namespaces+=( "${page_content}\n" )
+            ((page++))
+        fi
+    done
+
+    echo $all_project_namespaces |
+        sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//' | # remove whitespaces
+        sed -e "s~^$github_host_prefix~~" | # remove host prefix
+        sort |
+        comm -13 $github_nav_projects_cache - |         # append to the projects cache
+        tee -a $github_nav_projects_cache &&
+        sort -o $github_nav_projects_cache $github_nav_projects_cache # keep the projects cache sorted
 }
