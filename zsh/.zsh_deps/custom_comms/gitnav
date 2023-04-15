@@ -1,7 +1,6 @@
 #!/bin/bash
 
 nav_command_name="gitnav"
-mkdir -p "$CACHE_DIR/$nav_command_name"
 
 format_cowsay_lolcat() {
     cat
@@ -13,8 +12,6 @@ command -v cowsay >/dev/null 2>&1 && command -v lolcat >/dev/null 2>&1 && \
 # gitlab or github (have to change the code to switch between the two right now)
 # it excludes personal repos (repos with a dot in the root dirname)
 gitnav() {
-    mkdir -p "$CACHE_DIR/$nav_command_name"
-
     query=""
     if [[ $# -ge 1 ]]; then
         query="$@"
@@ -35,8 +32,6 @@ gitnav() {
 
 # gitnavall doesn't exclude any repo from the search
 gitnavall() {
-    mkdir -p "$CACHE_DIR/$nav_command_name"
-
     valid
     repo=$(_github_get_project_urls | fzf)
     if [[ -z "$repo" ]];
@@ -95,6 +90,9 @@ _gitlab_get_project_urls() {
 }
 
 _github_get_project_urls() {
+    mkdir -p "$CACHE_DIR/$nav_command_name"
+    touch "$CACHE_DIR/$nav_command_name"
+
     if [ -f $github_nav_projects_cache ]
     then
         # if the cache exists, output the contents as to not wait for the api calls...
@@ -145,13 +143,12 @@ github_access_level=30 # at least developer role
 github_per_page=100
 github_host_prefix="https://github.com/"
 
-# TODO
 _github_update_nav_cache_file() {
     page=1
     while :
     do
         # Fetch and extract namespaces from all the pages till we get an empty response
-        page_content=`curl -H 'Accept: application/vnd.github+json' -H "Authorization: $GITHUB_ACCESS_TOKEN" "https://api.github.com/user/repos?sort=updated&per_page=$github_per_page&page=$page" 2> /dev/null | jq -r '.[] | .clone_url'`
+        page_content=`curl -L -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" -H "Authorization: Bearer $GITHUB_ACCESS_TOKEN" "https://api.github.com/orgs/$GITHUB_ORG_NAME/repos?type=all&per_page=$github_per_page&page=$page" 2> /dev/null | jq -r '.[] | .html_url'`
         if [ -z "$page_content" ]
         then
             break
