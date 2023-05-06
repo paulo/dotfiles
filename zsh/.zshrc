@@ -16,14 +16,8 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 # Asdf version manager
 . $ZSH_DEPS_HOME/asdf
 
-# Source zgen
-. $ZSH_DEPS_HOME/z_gen
-
-# Source zplug (same config as with zgen, but slower)
-# . $ZSH_DEPS_HOME/.z_plugs
-
-# Source zplugin (same config as with zgen, but has a lot of problems)
-# . $ZSH_DEPS_HOME/.z_plugins
+# Source zgenom
+. $ZSH_DEPS_HOME/z_genom
 
 # Command alias
 . $ZSH_DEPS_HOME/alias
@@ -31,10 +25,6 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 # Work exclusive configuration
 [ -f $ZSH_DEPS_HOME/private/work ] && source $ZSH_DEPS_HOME/private/work
 [ -f $ZSH_DEPS_HOME/private/work ] && source $ZSH_DEPS_HOME/private/secrets
-
-# Source zplug (same config as with zgen, but slower)
-# zplug "zsh-users/zsh-syntax-highlighting", defer:3
-# zplug load
 
 # Fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
