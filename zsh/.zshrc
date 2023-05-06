@@ -58,6 +58,27 @@ eval "$(direnv hook zsh)" 2>&1
 # TODO: Set by env var
 # zprof
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Lazy load npm/nvm/node
+# Note that any lazy loading approach has some caveats; namely that any global packages you have installed won't be available until the first time you run nvm, npm, or node. It also breaks the LSP servers with nvim if nvm is not loaded previously.
+lazy_load_nvm() {
+  unset -f npm node nvm
+  export NVM_DIR=~/.nvm
+
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+}
+
+npm() {
+  lazy_load_nvm
+  npm $@
+}
+
+node() {
+  lazy_load_nvm
+  node $@
+}
+
+nvm() {
+  lazy_load_nvm
+  nvm $@
+}
