@@ -17,7 +17,10 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 . $ZSH_DEPS_HOME/asdf
 
 # Source zgenom
-. $ZSH_DEPS_HOME/z_genom
+# . $ZSH_DEPS_HOME/zgenom
+
+# Source zinit
+. $ZSH_DEPS_HOME/zinit
 
 # Command alias
 . $ZSH_DEPS_HOME/alias
@@ -35,6 +38,7 @@ for f in $ZSH_DEPS_HOME/custom_comms/*; do source $f; done
 # Syntax highlighting configs
 # https://blog.patshead.com/2012/01/using-and-customizing-zsh-syntax-highlighting-with-oh-my-zsh.html
 # Stop underlining ceritain commands and paths
+typeset -gA ZSH_HIGHLIGHT_STYLES
 export ZSH_HIGHLIGHT_STYLES[precommand]=none
 export ZSH_HIGHLIGHT_STYLES[path]=none
 

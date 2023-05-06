@@ -4,8 +4,13 @@
 #         Source ZGen framework
 ############################################
 
+# WARNING: Possibly deprecated. The .zpreztorc file is also deprecated as a
+# result
+
 # Don't allow compinit to be called by zgenom (already called by pretzo completion)
 export ZGEN_AUTOLOAD_COMPINIT=0
+# Don't load default modules included with prezto, we're loading them manually
+# export ZGEN_PREZTO_LOAD_DEFAULT=0
 
 # load zgenom
 source "${HOME}/.zgenom/zgenom.zsh"
@@ -24,7 +29,7 @@ if ! zgenom saved; then
   zgenom load ~/.zsh_plugins/git.plugin.zsh # Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
   zgenom load ~/.zsh_plugins/search_keys.plugin.zsh # Autocompletion with up arrow on the terminal.
 
-  ###################################################################3
+  ###################################################################
 
   zgenom load djui/alias-tips # Gives a tip when you use a command that as a defined alias.
   # zgenom load b4b4r07/enhancd # cd with fuzzy finding. Dependency: jhawthorn/fzy. Usage: cd

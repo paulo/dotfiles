@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Install zinit if not
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Snippet for if you source zinit.zsh after compinit
+# autoload -Uz _zinit
+# (( ${+_comps} )) && _comps[zinit]=_zinit
+
+zinit snippet PZTM::prompt
+
+zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
+zinit light sindresorhus/pure
+
+# Default modules, mostly from prezto
+zinit for \
+    PZTM::environment \
+    PZTM::editor
+
+zinit lucid wait for \
+    PZTM::directory \
+    PZTM::terminal \
+    PZTM::spectrum \
+    PZTM::completion \
+    PZTM::utility
+
+# 1. Docker command support. zinit required svn to download the plugin properly so better to just copy the contents
+# 2. Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
+# 3. Autocompletion with up arrow on the terminal.
+zinit snippet ~/.zsh_plugins/docker.plugin.zsh
+zinit snippet ~/.zsh_plugins/git.plugin.zsh
+zinit snippet ~/.zsh_plugins/search_keys.plugin.zsh
+
+# 4. Gives a tip when you use a command that as a defined alias.
+# 5. Open github from terminal
+# 6. Faster syntax-highlighting and init completions
+zinit lucid wait for \
+    djui/alias-tips \
+    paulirish/git-open \
+    "z-shell/F-Sy-H"
+
+# Not used for now due to issues
+# zgenom load b4b4r07/enhancd # cd with fuzzy finding. Dependency: jhawthorn/fzy. Usage: cd
+# source "$HOME/.zgenom/sources/b4b4r07/enhancd/___/init.sh"
