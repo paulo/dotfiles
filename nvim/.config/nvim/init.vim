@@ -124,7 +124,7 @@ elseif g:os == "Windows"
 endif
 
 source ~/.config/nvim/powerline.vim
-source ~/.config/nvim/tree.vim
+lua require('tree')
 source ~/.config/nvim/navigation.vim
 source ~/.config/nvim/code-display.vim
 source ~/.config/nvim/code-edition.vim
@@ -255,3 +255,8 @@ let g:go_highlight_variable_assignments = 0
 set textwidth=80
 set wrap
 set cpo=n
+
+" Hide tildes that appear at the end of the buffer (replace by whitespace)
+" Careful on editors that remove trailing whitespace, this file needs to be
+" saved with one
+set fcs=eob:\

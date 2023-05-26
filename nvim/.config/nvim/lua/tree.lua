@@ -1,18 +1,15 @@
-" https://github.com/kyazdani42/nvim-tree.luatree
-" Open Tree
-nnoremap <leader>d :NvimTreeToggle<CR>
-" Open Tree at the current file
-nnoremap <silent> <leader><leader>d :NvimTreeFindFile<CR>
+-- Config for https://github.com/nvim-tree/nvim-tree.lua
 
-" Hide tildes that appear at the end of the buffer (replace by whitespace)
-" Careful on editors that remove trailing whitespace, this file needs to be
-" saved with one
-set fcs=eob:\
+-- Open Tree
+vim.api.nvim_set_keymap('n', '<leader>d', ':NvimTreeToggle<CR>', { noremap = true })
 
-" automatically close the tab/vim when nvim-tree is the last window in the tab
-" autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+-- Open Tree at the current file
+vim.api.nvim_set_keymap('n', '<leader><leader>d', ':NvimTreeFindFile<CR>', { noremap = true, silent = true })
 
-lua <<EOF
+-- automatically close the tab/vim when nvim-tree is the last window in the tab
+-- (TODO: migrate to lua)
+-- autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif
+
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -139,4 +136,3 @@ end
 
 -- assign function to open tree at startup
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
-EOF
