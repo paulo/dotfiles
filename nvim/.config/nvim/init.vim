@@ -126,6 +126,7 @@ endif
 source ~/.config/nvim/powerline.vim
 lua require('tree')
 source ~/.config/nvim/navigation.vim
+lua require('search_menu')
 source ~/.config/nvim/code-display.vim
 source ~/.config/nvim/code-edition.vim
 " source ~/.config/nvim/auto-completion.vim
