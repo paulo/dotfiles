@@ -127,7 +127,7 @@ lua require('tree')
 source ~/.config/nvim/navigation.vim
 lua require('search_menu')
 source ~/.config/nvim/code-display.vim
-source ~/.config/nvim/code-edition.vim
+lua require('edit')
 " source ~/.config/nvim/auto-completion.vim
 lua require('autocomplete')
 
@@ -258,6 +258,6 @@ set wrap
 set cpo=n
 
 " Hide tildes that appear at the end of the buffer (replace by whitespace)
-" Careful on editors that remove trailing whitespace, this file needs to be
-" saved with one
-set fcs=eob:\
+" This is configured using a diagraph (check the whitespace after eob:)
+" so the linter doesn't remove the trailing whitespace
+set fcs=eob: 
