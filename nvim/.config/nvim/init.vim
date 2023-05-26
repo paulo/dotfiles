@@ -56,7 +56,6 @@ Plug 'dyng/ctrlsf.vim' " Simulates sublime's Ctrl+Shift+F
 " Accessibility
 Plug 'christoomey/vim-system-copy' " Copy to clipboard
 Plug 'tpope/vim-fugitive' " Git integration
-Plug 'shumphrey/fugitive-gitlab.vim' " Gitlab support
 Plug 'haya14busa/is.vim' " Incremental search and clear highlighting
 Plug 'tpope/vim-repeat' " Enhances . command
 Plug 'tpope/vim-unimpaired' " Complementary pairs of mappings

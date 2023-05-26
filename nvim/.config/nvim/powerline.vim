@@ -52,17 +52,17 @@ let g:lightline = {
       \   }
       \ }
 
-" Uncomment for powerline like separators
-" let g:lightline.separator = {
-      " \   'left': '', 'right': ''
-      " \}
-" let g:lightline.subseparator = {
-      " \   'left': '', 'right': ''
-      " \}
+" Powerline like separators
+let g:lightline.separator = {
+      \   'left': '', 'right': ''
+      \}
+let g:lightline.subseparator = {
+      \   'left': '', 'right': ''
+      \}
 
-" if (has("termguicolors"))
-  " set termguicolors
-" endif
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Get rid of insert in command line
 set noshowmode
