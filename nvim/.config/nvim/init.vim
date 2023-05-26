@@ -128,7 +128,8 @@ lua require('tree')
 source ~/.config/nvim/navigation.vim
 source ~/.config/nvim/code-display.vim
 source ~/.config/nvim/code-edition.vim
-source ~/.config/nvim/auto-completion.vim
+" source ~/.config/nvim/auto-completion.vim
+lua require('autocomplete')
 
 " Code format
 noremap <F2> :Autoformat<CR>
