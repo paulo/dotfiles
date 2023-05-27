@@ -57,3 +57,14 @@ require('telescope').setup{
     }
   }
 }
+
+-- Sneak
+-- Go to the next match using S again
+-- Type ctrl-o or `` to go back to the starting point (not related to the config)
+vim.g["sneak#s_next"] = 1
+
+-- Mappings for 1-character-sneak
+vim.api.nvim_set_keymap('n', 'f', '<Plug>Sneak_f', {})
+vim.api.nvim_set_keymap('n', 'F', '<Plug>Sneak_F', {})
+vim.api.nvim_set_keymap('n', 't', '<Plug>Sneak_t', {})
+vim.api.nvim_set_keymap('n', 'T', '<Plug>Sneak_T', {})

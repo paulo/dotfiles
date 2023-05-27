@@ -81,27 +81,6 @@ call plug#end()
 syntax enable
 colorscheme tender
 
-" Leader key
-let mapleader = ","
-" Local leader key (for local buffers and less common mappings)
-let maplocalleader = " "
-
-set nocompatible
-filetype plugin on
-" filetype plugin indent on " Avoid auto identation due to lag in big files
-set visualbell " No sounds
-
-set ignorecase " Case insensitive searching
-set smarttab " Smart tab handling for indenting
-
-" Fix slow scrolling in vim due to syntax highlighting
-" From https://eduncan911.com/software/fix-slow-scrolling-in-vim-and-neovim.html
-set lazyredraw
-
-" Clear highlighting on escape in normal mode
-nnoremap <esc> :noh<return><esc>
-nnoremap <esc>^[ <esc>^[
-
 " Detect the current OS for host specific configs
 if !exists("g:os")
     if has("win64") || has("win32") || has("win16")
@@ -122,6 +101,8 @@ elseif g:os == "Windows"
   " not supported
 endif
 
+lua require('base')
+lua require('theme')
 lua require('powerline')
 lua require('tree')
 lua require('navigation')
@@ -130,168 +111,10 @@ lua require('display')
 lua require('edit')
 lua require('autocomplete')
 
-" Code format
-noremap <F2> :Autoformat<CR>
-
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
-
-" Go files have an indentation of 4 spaces
-autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
-
 " rusty-tags configuration (https://github.com/dan-t/rusty-tags)
 autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi
 autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
 
-" Write remaining tabs as 4 spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Clear highlighting by redrawing screen
-" noremap <silent> <C-l> :nohl<CR><C-l> " <Ctrl-l> redraws the screen and removes any search highlighting.
-
-" Autosave and autoread
-" Will automatically save to disk the currently edited buffer upon leaving insert mode as well as after a text edit has occurred.
-" Will automatically update an open buffer if it has been changed outside the current edit session, usually by an external program.
-set autoread
-
-augroup autoSaveAndRead
-  autocmd!
-  autocmd TextChanged,InsertLeave,FocusLost * silent! wall
-  autocmd CursorHold * silent! checktime
-augroup END
-
-" Automatically equalize splits when Vim is resized
-autocmd VimResized * wincmd =
-
-" Enable wildmenu and wildmode.
-" Makes setting an option, or opening new files via :e, a breeze with TAB expansion.
-set wildmenu
-set wildmode=full
-
-" Convert the j and k movement commands from strict linewise movements to onscreen display line movements.
-nnoremap <expr> j v:count ? (v:count > 5 ? "m'" . v:count : '') . 'j' : 'gj'
-nnoremap <expr> k v:count ? (v:count > 5 ? "m'" . v:count : '') . 'k' : 'gk'
-
-" set guicursor= " Disable cursor change
-set mouse=a " Enable scroll in normal mode
-
-" Persistent undo. https://bluz71.github.io/2018/02/26/more-vim-tips.html
-let s:undoDir = "/tmp/.undodir_" . $USER
-if !isdirectory(s:undoDir)
-  call mkdir(s:undoDir, "", 0700)
-endif
-let &undodir=s:undoDir
-set undofile
-
-" Terminal configuration
-if has("nvim")
-  " Make escape work in the Neovim terminal.
-  " tnoremap <Esc> <C-\><C-n>
-
-  " Make escape work in the neovim terminal as well as on the fzf splits
-  au TermOpen * tnoremap <Esc> <c-\><c-n>
-  au FileType fzf tunmap <Esc>
-
-  " I like relative numbering when in normal mode.
-  autocmd TermOpen * setlocal conceallevel=0 colorcolumn=0 relativenumber
-
-  " Prefer Neovim terminal insert mode to normal mode.
-  autocmd BufEnter term://* startinsert
-endif
-
-" Remove showing cursor position in the file
-set noshowcmd noruler
-
-" https://unix.stackexchange.com/questions/404414/print-true-color-24-bit-test-pattern
-" https://gist.github.com/wmeng223/60b51b30eb758bd7a2a648436da1e562
-set termguicolors " this variable must be enabled for colors to be applied properly
-" if vim.fn.has('termguicolors') == 1 then
-  " vim.o.termguicolors = true
-" end
-
-" Configure autocompletion menu highlight
-set pumblend=10 " Semi-transparent pop-up menu
-hi Pmenu ctermbg=247 guibg=#424242
-hi PmenuSel cterm=bold ctermbg=yellow guifg=#0EB1D2 guibg=#686963 gui=bold
-hi PmenuSbar ctermbg=0 guibg=#424242 guifg=#424242
-hi PmenuThumb ctermbg=0 guibg=#F7EF99 guifg=#F7EF99
-
-" Number display
-hi LineNr ctermfg=lightyellow cterm=bold guifg=#F7EF99 gui=bold
-hi CursorLineNr ctermfg=white cterm=bold guifg=white gui=bold
-
-" Highlight color for searching and parentheses/brackets
-hi Search term=reverse cterm=NONE ctermfg=221 ctermbg=125 guifg=#81F499 guibg=NONE
-hi MatchParen cterm=bold ctermfg=221 ctermbg=125 guifg=#0EB1D2 guibg=NONE
-hi Visual cterm=bold ctermfg=221 ctermbg=125 guibg=Grey30
-
-" Configure vertical splits design
-hi VertSplit cterm=bold ctermfg=7 ctermbg=NONE guibg=NONE guifg=Grey40
-
-" Configure error coloring
-hi LspDiagnosticsVirtualTextError guifg=#D56062 gui=bold ctermfg=Red
-
-" Configure file explorer tree
-hi NvimTreeFolderName guifg=#A3CEF1 gui=bold ctermfg=Blue
-hi NvimTreeOpenedFolderName guifg=#CAE3F7 gui=bold ctermfg=Blue
-hi NvimTreeRootFolder guifg=#ECBEB4 gui=bold ctermfg=Blue
-hi NvimTreeFolderIcon guifg=#A3CEF1 ctermfg=Blue
-hi NvimTreeGitDirty guifg=#F97068 gui=bold ctermfg=Blue
-
-" Configure vim-go highlighting
-let g:go_highlight_structs = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_function_parameters = 1
-let g:go_highlight_function_calls = 1
-let g:go_highlight_types = 0
-let g:go_highlight_fields = 1
-let g:go_highlight_generate_tags = 1
-let g:go_highlight_variable_declarations = 1
-let g:go_highlight_variable_assignments = 0
-
-" Wrap text
-set textwidth=80
-set wrap
-set cpo=n
-
-" Hide tildes that appear at the end of the buffer (replace by whitespace)
-" This is configured using a diagraph (check the whitespace after eob:)
-" so the linter doesn't remove the trailing whitespace
-set fcs=eob: 
-
-" Window spliting and quiting
-nnoremap <silent> <leader>s :split<CR>
-nnoremap <silent> <leader>v :vsplit<CR>
-nnoremap <silent> <leader>q :close<CR>
-
-" Buffer navigation helpers
-nmap <leader>h :bp<cr> " Go to the previous buffer open
-nmap <leader>l :bn<cr> " Go to the next buffer open
-nmap <leader>t :enew<cr> " Open a new empty buffer. Replaces :tabnew
-nmap <leader>q :bp <BAR> bd #<cr> " Close the current buffer and move to the previous one
-
-" There are multiple choices available when choosing a fold method. <leader><Space> toggles a fold based on the indent level of the current cursor line
-nnoremap <leader><Space> za
-
-" Quickfix list settings
-nnoremap <leader><leader>o :copen<cr> " Open the quickfix window
-nnoremap <leader><leader>q :ccl<cr> " Close it
-nnoremap <leader><leader>t :cw<cr> " Open it if there are "errors", close it otherwise (some people prefer this)
-nnoremap <leader>j :cn<cr> " Go to the next error in the window
-nnoremap <leader>k :cp<cr> " Go to the previous error in the window
-nnoremap <leader><leader>k :cnf<cr> " Go to the first error in the next file
-
-" Navigate between vim splits and tmux panes with C-h/j/k/l
-" (https://bluz71.github.io/2017/06/14/a-few-vim-tmux-mappings.html)
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
 
 if &term == 'screen-256color'
   let g:tmux_navigator_no_mappings = 1
@@ -300,21 +123,6 @@ if &term == 'screen-256color'
   nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
   nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 endif
-
-" Sneak
-" Go to the next match using S again
-" Type ctrl-o or `` to go back to the starting point (not related to the
-" config)
-let g:sneak#s_next = 1
-
-" Mappings for 1-character-sneak
-map f <Plug>Sneak_f
-map F <Plug>Sneak_F
-map t <Plug>Sneak_t
-map T <Plug>Sneak_T
-
-" Colors for sneak matching
-hi Sneak cterm=bold ctermfg=15 ctermbg=8 guibg=NONE
 
 " Go configuration for tagbar
 let g:tagbar_type_go = {

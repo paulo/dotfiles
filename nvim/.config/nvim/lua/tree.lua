@@ -14,9 +14,6 @@ vim.api.nvim_set_keymap('n', '<leader><leader>d', ':NvimTreeFindFile<CR>', { nor
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
-
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 
 -- Auto-generated function from tree plugin to define mappings
