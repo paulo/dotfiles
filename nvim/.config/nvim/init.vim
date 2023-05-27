@@ -122,11 +122,12 @@ elseif g:os == "Windows"
   " not supported
 endif
 
-source ~/.config/nvim/powerline.vim
+" source ~/.config/nvim/powerline.vim
+lua require('powerline')
 lua require('tree')
 source ~/.config/nvim/navigation.vim
 lua require('search_menu')
-source ~/.config/nvim/code-display.vim
+lua require('display')
 lua require('edit')
 " source ~/.config/nvim/auto-completion.vim
 lua require('autocomplete')
@@ -207,6 +208,9 @@ set noshowcmd noruler
 " https://unix.stackexchange.com/questions/404414/print-true-color-24-bit-test-pattern
 " https://gist.github.com/wmeng223/60b51b30eb758bd7a2a648436da1e562
 set termguicolors " this variable must be enabled for colors to be applied properly
+" if vim.fn.has('termguicolors') == 1 then
+  " vim.o.termguicolors = true
+" end
 
 " Configure autocompletion menu highlight
 set pumblend=10 " Semi-transparent pop-up menu
