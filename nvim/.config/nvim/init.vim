@@ -126,7 +126,8 @@ endif
 lua require('powerline')
 lua require('tree')
 source ~/.config/nvim/navigation.vim
-lua require('search_menu')
+lua require('navigation')
+lua require('search')
 lua require('display')
 lua require('edit')
 " source ~/.config/nvim/auto-completion.vim
