@@ -39,8 +39,8 @@ vim.opt.showbreak = ' ↳ '
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 
--- Disable auto indent for specific file types
-vim.cmd('autocmd FileType ruby, vim filetype indent off')
+-- Disable auto indent due to issue related to big files
+-- vim.cmd('autocmd FileType ruby, vim filetype indent off')
 
 -- Tag management (displays all file tags)
 vim.api.nvim_set_keymap('n', '<F8>', ':TagbarToggle<CR>', { noremap = true })
