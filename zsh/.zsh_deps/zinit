@@ -15,10 +15,11 @@ zinit snippet PZTM::prompt
 zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled with it.
 zinit light sindresorhus/pure
 
-# Default modules, mostly from prezto
+# Default modules, mostly from prezto. Do not remove 'history'
 zinit for \
     PZTM::environment \
-    PZTM::editor
+    PZTM::editor \
+    PZTM::history
 
 zinit lucid wait for \
     PZTM::directory \

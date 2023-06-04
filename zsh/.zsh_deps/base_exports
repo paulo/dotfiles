@@ -16,6 +16,8 @@ export ASDF_DATA_DIR="$HOME/.asdf"
 export DEVELOPMENT_HOME="$HOME/dev"
 export RUBY_HOME="$ASDF_PATH/ruby"
 export CONDA_PATH="/usr/local/anaconda3/bin"
+# Sublime is symlinked to /usr/local/bin/ instead of added to the path
+# export SUBLIME_PATH="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin"
 
 export COLORTERM=truecolor
 
@@ -25,8 +27,10 @@ export _ZO_DATA_DIR="$HOME" # zoxide database directory
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
-export SAVEHIST=10000
-# export HISTFILE=~/.zsh_history Not needed anymore due to pretzo. New value is ~/.zhistory
+# These are already set by prezto history module
+# export SAVEHIST=10000
+# export HISTSIZE=10000
+# export HISTFILE=~/.zsh_history
 export ENHANCD_FILTER=fzf:fzy
 export CACHE_DIR=${XDG_CACHE_DIR:-$HOME/.cache}
 

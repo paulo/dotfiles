@@ -52,8 +52,7 @@ alias gfind='fzf'
 alias v="$EDITOR"
 
 # Sublime
-alias s='sublime'
-alias subl='sublime'
+alias s='subl'
 
 # Clean logs to speed up terminal boot
 alias cleanlogs='sudo rm /private/var/log/asl/*.asl'
@@ -61,13 +60,3 @@ alias cleanlogs='sudo rm /private/var/log/asl/*.asl'
 # Git
 alias gbpurge='git branch --merged | grep -Ev "(\*|master|develop|staging)" | xargs -n 1 git branch -d'
 alias gbo='git branch --sort=-committerdate' # Show branches ordered by date
-
-# Erlang
-alias erlang='erl'
-
-# Elixir
-alias mps='mix phx.server'
-alias mpc='iex -S mix phx.server'
-
-# Goland
-alias i='goland'
