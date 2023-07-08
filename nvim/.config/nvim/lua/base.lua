@@ -17,10 +17,6 @@ vim.opt.smarttab = true -- Smart tab handling for indenting
 -- From https://eduncan911.com/software/fix-slow-scrolling-in-vim-and-neovim.html
 vim.opt.lazyredraw = true
 
--- Clear highlighting on escape in normal mode
-vim.api.nvim_set_keymap('n', '<esc>', ':noh<CR><esc>', { silent = true })
-vim.api.nvim_set_keymap('n', '<esc>^[', '<esc>^[', { silent = true })
-
 -- Code format
 vim.api.nvim_set_keymap('n', '<F2>', ':Autoformat<CR>', { silent = true })
 
