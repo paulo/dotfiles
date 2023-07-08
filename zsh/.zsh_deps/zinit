@@ -16,17 +16,18 @@ zinit ice pick"async.zsh" src"pure.zsh" # with zsh-async library that's bundled 
 zinit light sindresorhus/pure
 
 # Default modules, mostly from prezto. Do not remove 'history'
+# These modules need to be loaded sync
 zinit for \
     PZTM::environment \
     PZTM::editor \
-    PZTM::history
+    PZTM::history \
+    PZTM::utility
 
 zinit lucid wait for \
     PZTM::directory \
     PZTM::terminal \
     PZTM::spectrum \
-    PZTM::completion \
-    PZTM::utility
+    PZTM::completion
 
 # 1. Docker command support. zinit required svn to download the plugin properly so better to just copy the contents
 # 2. Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
