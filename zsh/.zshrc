@@ -58,6 +58,9 @@ fi
 # Hook direnv silently so it reads .envrc on directory change - https://direnv.net/
 eval "$(direnv hook zsh)" 2>&1
 
+# Load atuin without the up arrow functionality
+eval "$(atuin init zsh --disable-up-arrow)"
+
 # Uncomment for profile configuration
 # TODO: Set by env var
 # zprof
