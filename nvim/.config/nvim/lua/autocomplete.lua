@@ -51,3 +51,8 @@ vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { 
 -- Language server config
 -- Required for operations modifying multiple buffers like rename.
 vim.o.hidden = true
+
+-- Configure copilot
+require("coq_3p") {
+  { src = "copilot", short_name = "COP", accept_key = "<C-f>" }
+}

@@ -27,6 +27,8 @@ Plug 'nvim-telescope/telescope.nvim'
 
 -- Auto-complete engine
 Plug('ms-jpq/coq_nvim', {branch = 'coq'})
+Plug('github/copilot.vim')
+Plug('ms-jpq/coq.thirdparty')
 
 -- Snippets
 Plug('ms-jpq/coq.artifacts', {branch = 'artifacts'})

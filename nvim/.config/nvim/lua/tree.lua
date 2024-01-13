@@ -14,8 +14,6 @@ vim.api.nvim_set_keymap('n', '<leader><leader>d', ':NvimTreeFindFile<CR>', { nor
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-local tree_cb = require'nvim-tree.config'.nvim_tree_callback
-
 -- Auto-generated function from tree plugin to define mappings
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Migrating-To-on_attach
 local function on_attach(bufnr)
@@ -70,11 +68,7 @@ require "nvim-tree".setup {
     },
     view = {
         width = 30,
-        hide_root_folder = false,
         side = "left",
-        mappings = {
-            custom_only = false
-        },
         number = false,
         relativenumber = false,
         signcolumn = "yes"
