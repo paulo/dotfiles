@@ -6,6 +6,7 @@ DS_Store
 
 # CTags
 tags
+/tags
 rusty-tags.vi
 
 # Intellij

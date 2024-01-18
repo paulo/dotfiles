@@ -6,7 +6,7 @@
 
 # Tools
 export LOCAL_PATH="/usr/local"
-export BASE_PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export BASE_PATH="$PATH:/usr/bin:/usr/local/bin:/bin:/usr/sbin:/sbin"
 export BREW_HOME="/opt/homebrew/bin"
 export SQLITE_PATH="/usr/local/opt/sqlite/bin"
 

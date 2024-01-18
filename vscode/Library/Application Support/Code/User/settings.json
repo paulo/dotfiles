@@ -50,5 +50,6 @@
     "terminal.integrated.fontSize": 11,
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust"
-    }
+    },
+    "cmake.configureOnOpen": true
 }

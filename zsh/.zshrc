@@ -27,7 +27,7 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 
 # Work exclusive configuration
 [ -f $ZSH_DEPS_HOME/private/work ] && source $ZSH_DEPS_HOME/private/work
-[ -f $ZSH_DEPS_HOME/private/work ] && source $ZSH_DEPS_HOME/private/secrets
+[ -f $ZSH_DEPS_HOME/private/secrets ] && source $ZSH_DEPS_HOME/private/secrets
 
 # Fzf key bindings and fuzzy completion
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
