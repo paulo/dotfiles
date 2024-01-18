@@ -24,9 +24,16 @@ vim.api.nvim_set_keymap('n', '<F2>', ':Autoformat<CR>', { silent = true })
 vim.cmd('autocmd Filetype html setlocal ts=2 sts=2 sw=2')
 vim.cmd('autocmd Filetype ruby setlocal ts=2 sts=2 sw=2')
 vim.cmd('autocmd Filetype javascript setlocal ts=4 sts=4 sw=4')
+vim.cmd('autocmd Filetype cpp setlocal ts=2 sts=2 sw=2')
 
+vim.g.sleuth_cpp_heuristics = 0
+vim.g.sleuth_cc_heuristics = 0
 -- Go files have an indentation of 4 spaces
 vim.cmd('autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4')
+
+-- C++ files have an identation of 2 spaces
+vim.cmd('autocmd BufNewFile,BufRead *.cc setlocal expandtab tabstop=2 shiftwidth=2')
+vim.cmd('autocmd BufNewFile,BufRead *.h setlocal expandtab tabstop=2 shiftwidth=2')
 
 -- Write remaining tabs as 4 spaces
 vim.o.tabstop = 8

@@ -38,6 +38,7 @@ Plug 'majutsushi/tagbar' -- Nerd-tree like menu for tags
 
 -- LanguageServer client for NeoVim.
 Plug 'neovim/nvim-lspconfig'
+Plug 'onsails/diaglist.nvim' -- see diagnostics on quickfix list
 
 -- Code display
 -- Plug 'luochen1990/rainbow' -- Various colors for brackets and parentises.
@@ -74,7 +75,7 @@ Plug 'rust-lang/rust.vim'
 -- Ruby
 Plug 'vim-ruby/vim-ruby'
 -- C++
-Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp'}})
+Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp', 'cc', 'h'}})
 
 -- Lint
 Plug 'mfussenegger/nvim-lint'
