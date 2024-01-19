@@ -23,7 +23,7 @@ zinit for \
     PZTM::history \
     PZTM::utility
 
-zinit lucid wait for \
+zinit ice wait lucid for \
     PZTM::directory \
     PZTM::terminal \
     PZTM::spectrum \
@@ -32,8 +32,11 @@ zinit lucid wait for \
 # 1. Docker command support. zinit required svn to download the plugin properly so better to just copy the contents
 # 2. Git command support with various defined aliases (have to be these aliases, I don't like the ones from other packages)
 # 3. Autocompletion with up arrow on the terminal.
+zinit ice wait lucid
 zinit snippet ~/.zsh_plugins/docker.plugin.zsh
+zinit ice wait lucid
 zinit snippet ~/.zsh_plugins/git.plugin.zsh
+zinit ice wait lucid
 zinit snippet ~/.zsh_plugins/search_keys.plugin.zsh
 
 # 4. Gives a tip when you use a command that as a defined alias.
@@ -43,7 +46,3 @@ zinit lucid wait for \
     djui/alias-tips \
     paulirish/git-open \
     "z-shell/F-Sy-H"
-
-# Not used for now due to issues
-# zgenom load b4b4r07/enhancd # cd with fuzzy finding. Dependency: jhawthorn/fzy. Usage: cd
-# source "$HOME/.zgenom/sources/b4b4r07/enhancd/___/init.sh"

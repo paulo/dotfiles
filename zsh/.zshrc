@@ -16,9 +16,6 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 # Asdf version manager
 . $ZSH_DEPS_HOME/asdf
 
-# Source zgenom
-# . $ZSH_DEPS_HOME/zgenom
-
 # Source zinit
 . $ZSH_DEPS_HOME/zinit
 
