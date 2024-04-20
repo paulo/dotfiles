@@ -42,7 +42,12 @@ zinit snippet ~/.zsh_plugins/search_keys.plugin.zsh
 # 4. Gives a tip when you use a command that as a defined alias.
 # 5. Open github from terminal
 # 6. Faster syntax-highlighting and init completions
-zinit lucid wait for \
+# 7. Better terminal history search
+zinit wait lucid for \
     djui/alias-tips \
     paulirish/git-open \
     "z-shell/F-Sy-H"
+
+zinit ice atclone"sed -i '' 's/atuin init zsh/atuin init zsh --disable-up-arrow/g' atuin.plugin.zsh"
+zinit ice wait lucid
+zinit load atuinsh/atuin
