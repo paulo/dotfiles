@@ -16,6 +16,7 @@ export ASDF_DATA_DIR="$HOME/.asdf"
 export DEVELOPMENT_HOME="$HOME/dev"
 export RUBY_HOME="$ASDF_PATH/ruby"
 export CONDA_PATH="/usr/local/anaconda3/bin"
+export LATEX_PATH="/usr/local/texlive/2024/bin/universal-darwin"
 # Sublime is symlinked to /usr/local/bin/ instead of added to the path
 # export SUBLIME_PATH="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin"
 
@@ -49,7 +50,7 @@ export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
 
 ##### PATH CONFIG #####
-export PATH="$BREW_HOME:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
+export PATH="$BREW_HOME:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin:$LATEX_PATH"
 #######################
 
 # Fzf configs
