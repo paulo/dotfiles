@@ -12,6 +12,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 -- Themes and powerline
 Plug 'itchyny/lightline.vim'
 Plug 'jacoborus/tender.vim'
+Plug('AlexvZyl/nordic.nvim', { branch = 'main' })
 
 -- Directory, file and buffer navigation
 Plug 'kyazdani42/nvim-web-devicons' -- for file icons
@@ -33,9 +34,6 @@ Plug('ms-jpq/coq.thirdparty')
 -- Snippets
 Plug('ms-jpq/coq.artifacts', {branch = 'artifacts'})
 
--- Ctags
-Plug 'majutsushi/tagbar' -- Nerd-tree like menu for tags
-
 -- LanguageServer client for NeoVim.
 Plug 'neovim/nvim-lspconfig'
 Plug 'onsails/diaglist.nvim' -- see diagnostics on quickfix list
@@ -47,6 +45,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'ConradIrwin/vim-bracketed-paste' -- Avoid indenting when pasting
 Plug 'tpope/vim-sleuth' -- Automatically set idententation and tabs on buffers
 Plug 'pboettch/vim-cmake-syntax' -- Cmake syntax highlighting
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 
 -- Code edition
 Plug 'scrooloose/nerdcommenter' -- Comment code.
@@ -58,6 +57,7 @@ Plug 'Raimondi/delimitMate' -- Insert mode auto-completion for quotes, parens, b
 Plug 'justinmk/vim-sneak' -- Jump to any location specified by two characters
 Plug 'godlygeek/tabular' -- Align equals
 Plug 'dyng/ctrlsf.vim' -- Simulates sublime's Ctrl+Shift+F
+Plug 'sbdchd/neoformat' -- Format code automatically
 
 -- Accessibility
 Plug 'christoomey/vim-system-copy' -- Copy to clipboard
@@ -76,15 +76,53 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-ruby/vim-ruby'
 -- C++
 Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp', 'cc', 'h'}})
-
--- Lint
-Plug 'mfussenegger/nvim-lint'
+-- JS/TS/React/CSS/HTML
+-- Plug('olrtg/nvim-emmet', { ['do'] = function()
+    -- vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
+-- end })
 
 vim.call('plug#end')
 
 -- Set colorscheme
 vim.cmd('syntax enable')
-vim.cmd('colorscheme tender')
+-- vim.cmd('colorscheme tender') -- transitioning to nordic
+
+-- Default: https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
+local palette = require 'nordic.colors'
+palette.gray0 = '#262626'
+palette.blue1 = '#73cef4'
+-- palette.green.base = '#d3b987'
+
+-- https://github.com/AlexvZyl/nordic.nvim
+require 'nordic' .setup {
+    -- This callback can be used to override the colors used in the palette.
+    on_palette = function(palette) return palette end,
+    -- Enable bold keywords.
+    bold_keywords = true,
+    -- Enable italic comments.
+    italic_comments = true,
+    -- Enable general editor background transparency.
+    transparent_bg = false,
+    -- Enable brighter float border.
+    bright_border = true,
+    -- Reduce the overall amount of blue in the theme (diverges from base Nord).
+    reduced_blue = true,
+    -- Swap the dark background with the normal one.
+    swap_backgrounds = false,
+    -- Cursorline options.  Also includes visual/selection.
+    cursorline = {
+        -- Bold font in cursorline.
+        bold = false,
+        -- Bold cursorline number.
+        bold_number = true,
+        -- Available styles: 'dark', 'light'.
+        theme = 'dark',
+        -- Blending the cursorline bg with the buffer bg.
+        blend = 0.75,
+    }
+}
+
+vim.cmd.colorscheme 'nordic'
 
 -- Detect the current OS for host specific configs
 if not vim.g.os then
@@ -127,33 +165,3 @@ if vim.env.term == 'screen-256color' then
     vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<CR>', { silent = true })
     vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<CR>', { silent = true })
 end
-
--- Go configuration for tagbar
-vim.g.tagbar_type_go = {
-    ctagstype = 'go',
-    kinds = {
-        'p:package',
-        'i:imports:1',
-        'c:constants',
-        'v:variables',
-        't:types',
-        'n:interfaces',
-        'w:fields',
-        'e:embedded',
-        'm:methods',
-        'r:constructor',
-        'f:functions',
-    },
-    sro = '.',
-    kind2scope = {
-        t = 'ctype',
-        n = 'ntype',
-    },
-    scope2kind = {
-        ctype = 't',
-        ntype = 'n',
-    },
-    ctagsbin = 'gotags',
-    ctagsargs = '-sort -silent',
-}
-

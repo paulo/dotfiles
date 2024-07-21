@@ -115,7 +115,6 @@ vim.opt.ruler = false
 
 -- Enable true color support
 -- https://unix.stackexchange.com/questions/404414/print-true-color-24-bit-test-pattern
--- https://gist.github.com/wmeng223/60b51b30eb758bd7a2a648436da1e562
 if vim.fn.has('termguicolors') == 1 then
     vim.o.termguicolors = true
     vim.opt.termguicolors = true
