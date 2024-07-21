@@ -60,9 +60,12 @@ vim.api.nvim_set_keymap('n', '<space>', 'za', {})
 -- Autoformat cpp files
 vim.g.clang_format_auto_format = 1
 
--- nvim-lint configuration
-require('lint').linters_by_ft = {
-  markdown = {'vale'},
-}
+vim.g.neoformat_try_node_exe = 1
+vim.g.neoformat_only_msg_on_error = 1
 
-vim.cmd([[au BufWritePost *.md lua require('lint').try_lint()]])
+-- Define an autocmd that triggers before saving a buffer. Format on save
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("fmt", { clear = true }),
+  pattern = "*",
+  command = "undojoin | Neoformat",
+})
