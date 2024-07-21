@@ -21,8 +21,6 @@ lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({}))
 
 -- JS/TS/CSS/etc, requires npm install [-g] @biomejs/biome
 -- Maybe use instead of neoformat + ESLint + Prettier in the future
--- lsp.biome.setup(coq.lsp_ensure_capabilities({}))
-
 -- TypeScript, requires `npm i -g typescript-language-server`
 lsp.tsserver.setup(
   coq.lsp_ensure_capabilities({
@@ -46,8 +44,8 @@ lsp.eslint.setup(coq.lsp_ensure_capabilities{
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 lsp.html.setup(coq.lsp_ensure_capabilities({}))
--- Requires npm install -g emmet-ls
-lsp.emmet_ls.setup(coq.lsp_ensure_capabilities({}))
+-- Requires npm i -g @olrtg/emmet-language-server
+lsp.emmet_language_server.setup(coq.lsp_ensure_capabilities({}))
 
 -- Coq settings
 vim.g.coq_settings = {

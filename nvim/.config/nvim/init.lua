@@ -76,10 +76,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'vim-ruby/vim-ruby'
 -- C++
 Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp', 'cc', 'h'}})
--- JS/TS/React/CSS/HTML
--- Plug('olrtg/nvim-emmet', { ['do'] = function()
-    -- vim.keymap.set({ "n", "v" }, '<leader>xe', require('nvim-emmet').wrap_with_abbreviation)
--- end })
 
 vim.call('plug#end')
 
