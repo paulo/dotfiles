@@ -1,5 +1,6 @@
 # MacOS
 DS_Store
+.DS_Store
 
 # Asdf
 .tool-versions
@@ -17,3 +18,5 @@ rusty-tags.vi
 lambda-nodejs14.x
 
 .vale.ini
+
+vscode/Library/Application Support/Code/

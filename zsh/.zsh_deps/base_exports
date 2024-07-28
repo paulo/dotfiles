@@ -9,6 +9,7 @@ export LOCAL_PATH="/usr/local"
 export BASE_PATH="$PATH:/usr/bin:/usr/local/bin:/bin:/usr/sbin:/sbin"
 export BREW_HOME="/opt/homebrew/bin"
 export SQLITE_PATH="/usr/local/opt/sqlite/bin"
+export NODE_PATH="/Users/paulo/.nvm/versions/node/v20.10.0/bin"
 
 export ASDF_PATH="$HOME/.asdf/shims"
 export ASDF_DATA_DIR="$HOME/.asdf"
@@ -50,7 +51,7 @@ export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
 
 ##### PATH CONFIG #####
-export PATH="$BREW_HOME:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin:$LATEX_PATH"
+export PATH="/Users/paulo/.local/bin:$NODE_PATH:$BREW_HOME:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$CONDA_PATH:$PYENV_ROOT/bin"
 #######################
 
 # Fzf configs
