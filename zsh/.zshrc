@@ -27,6 +27,7 @@ export ZSH_DEPS_HOME=$HOME/.zsh_deps
 [ -f $ZSH_DEPS_HOME/private/secrets ] && source $ZSH_DEPS_HOME/private/secrets
 
 # Fzf key bindings and fuzzy completion
+# To install: https://github.com/junegunn/fzf?tab=readme-ov-file#using-git
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Custom commands at the end to avoid override by other plugins
@@ -46,6 +47,9 @@ eval "$(pyenv virtualenv-init -)"
 
 # Init zoxide (https://github.com/ajeetdsouza/zoxide)
 eval "$(zoxide init zsh)"
+
+# Init atuin
+eval "$(atuin init zsh --disable-up-arrow)"
 
 #if not inside a tmux session, and if no session is started, start a new session
 if which tmux >/dev/null 2>&1; then

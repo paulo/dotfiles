@@ -15,8 +15,8 @@ Plug 'jacoborus/tender.vim'
 Plug('AlexvZyl/nordic.nvim', { branch = 'main' })
 
 -- Directory, file and buffer navigation
-Plug 'kyazdani42/nvim-web-devicons' -- for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-tree/nvim-web-devicons' -- for file icons
+Plug 'nvim-tree/nvim-tree.lua'
 
 -- Navigation and searching
 Plug('junegunn/fzf', {dir = '~/.fzf', ['do'] = vim.fn['fzf#install --all']})
