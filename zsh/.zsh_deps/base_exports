@@ -7,15 +7,10 @@
 # Tools
 export LOCAL_PATH="/usr/local"
 export BASE_PATH="$PATH:/usr/bin:/usr/local/bin:/bin:/usr/sbin:/sbin"
-export SQLITE_PATH="/usr/local/opt/sqlite/bin"
 export NODE_PATH="/Users/paulo/.nvm/versions/node/v20.10.0/bin"
-
-export ASDF_PATH="$HOME/.asdf/shims"
-export ASDF_DATA_DIR="$HOME/.asdf"
-
-export DEVELOPMENT_HOME="$HOME/dev"
-export RUBY_HOME="$ASDF_PATH/ruby"
+export DEV_HOME="$HOME/dev"
 export LATEX_PATH="/usr/local/texlive/2024/bin/universal-darwin"
+
 # Sublime is symlinked to /usr/local/bin/ instead of added to the path
 # export SUBLIME_PATH="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin"
 
@@ -27,6 +22,7 @@ export _ZO_DATA_DIR="$HOME" # zoxide database directory
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export EDITOR='nvim'
+
 # These are already set by prezto history module
 # export SAVEHIST=10000
 # export HISTSIZE=10000
@@ -35,7 +31,7 @@ export ENHANCD_FILTER=fzf:fzy
 export CACHE_DIR=${XDG_CACHE_DIR:-$HOME/.cache}
 
 # Go configs
-export GOPATH="$DEVELOPMENT_HOME" # go env GOPATH
+export GOPATH="$DEV_HOME" # go env GOPATH
 export GOPATH_BIN="$GOPATH/bin" # For convenience
 
 # Node configs
@@ -49,7 +45,7 @@ export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
 
 
 ##### PATH CONFIG #####
-export PATH="/Users/paulo/.local/bin:$NODE_PATH:$ASDF_PATH:$SQLITE_PATH:$BASE_PATH:$DEVELOPMENT_HOME:$GOPATH_BIN:$PYENV_ROOT/bin"
+export PATH="/Users/paulo/.local/bin:$NODE_PATH:$BASE_PATH:$GOPATH_BIN:$PYENV_ROOT/bin"
 #######################
 
 # Fzf configs
