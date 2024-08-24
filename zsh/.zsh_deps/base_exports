@@ -17,6 +17,7 @@ export LATEX_PATH="/usr/local/texlive/2024/bin/universal-darwin"
 export COLORTERM=truecolor
 
 export _ZO_DATA_DIR="$HOME" # zoxide database directory
+export BREW_HOME="/opt/homebrew/bin"
 
 # System configs
 export LC_ALL=en_US.UTF-8
@@ -40,12 +41,8 @@ export NVM_DIR="$HOME/.nvm"
 # Python configs
 export PYENV_ROOT="$HOME/.pyenv" # PYENV_ROOT="$HOME/.pyenv"
 
-# Rust configs
-export RUST_SRC_PATH=$(rustc --print sysroot)/lib/rustlib/src/rust/library/
-
-
 ##### PATH CONFIG #####
-export PATH="/Users/paulo/.local/bin:$NODE_PATH:$BASE_PATH:$GOPATH_BIN:$PYENV_ROOT/bin"
+export PATH="/Users/paulo/.local/bin:$BREW_HOME:$NODE_PATH:$BASE_PATH:$GOPATH_BIN:$PYENV_ROOT/bin"
 #######################
 
 # Fzf configs

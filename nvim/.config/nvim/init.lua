@@ -70,8 +70,6 @@ Plug 'kshenoy/vim-signature' -- Support for marks
 -- Language support
 -- Go
 Plug('fatih/vim-go', {['do'] = ':GoUpdateBinaries'})
--- Rust
-Plug 'rust-lang/rust.vim'
 -- Ruby
 Plug 'vim-ruby/vim-ruby'
 -- C++
