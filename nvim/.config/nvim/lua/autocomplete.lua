@@ -1,10 +1,23 @@
+-- Coq settings. Must be set before loading the plugin.
+vim.g.coq_settings = {
+  auto_start = 'shut-up',
+  keymap = {
+    jump_to_mark = '<c-?>'
+  },
+  clients = {
+    tabnine = {
+      enabled = true
+    }
+  }
+}
+
 -- https://github.com/ms-jpq/coq_nvim
 -- Requires universal-ctags (from brew)
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local lsp = require "lspconfig"
 local coq = require "coq"
 
-lsp.gopls.setup{
+lsp.gopls.setup(coq.lsp_ensure_capabilities({
   settings = {
     gopls =  {
       env = {
@@ -12,12 +25,12 @@ lsp.gopls.setup{
       }
     }
   }
-}
+}))
+
 lsp.solargraph.setup(coq.lsp_ensure_capabilities({}))
 lsp.pyright.setup(coq.lsp_ensure_capabilities({}))
 lsp.bashls.setup(coq.lsp_ensure_capabilities({}))
 lsp.clangd.setup(coq.lsp_ensure_capabilities({}))
-lsp.rust_analyzer.setup(coq.lsp_ensure_capabilities({}))
 
 -- JS/TS/CSS/etc, requires npm install [-g] @biomejs/biome
 -- Maybe use instead of neoformat + ESLint + Prettier in the future
@@ -47,19 +60,6 @@ lsp.html.setup(coq.lsp_ensure_capabilities({}))
 -- Requires npm i -g @olrtg/emmet-language-server
 lsp.emmet_language_server.setup(coq.lsp_ensure_capabilities({}))
 
--- Coq settings
-vim.g.coq_settings = {
-  auto_start = 'shut-up',
-  keymap = {
-    jump_to_mark = '<c-?>'
-  },
-  clients = {
-    tabnine = {
-      enabled = true
-    }
-  }
-}
-
 -- This will show the popup menu even if there's only one match (menuone),
 -- prevent automatic selection (noselect) and prevent automatic text injection
 -- into the current line (noinsert).
@@ -88,4 +88,51 @@ require("diaglist").init({
 
     -- increase for noisy servers
     debounce_ms = 150,
+})
+
+-- LSP keybindings, from https://vonheikemen.github.io/devlog/tools/neovim-lsp-client-guide/
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local bufmap = function(mode, lhs, rhs)
+      local opts = {buffer = event.buf}
+      vim.keymap.set(mode, lhs, rhs, opts)
+    end
+
+    -- You can find details of these function in the help page
+    -- see for example, :help vim.lsp.buf.hover()
+
+    -- Trigger code completion
+    bufmap('i', '<C-Space>', '<C-x><C-o>')
+
+    -- Display documentation of the symbol under the cursor
+    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+
+    -- Jump to the definition
+    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+
+    -- Jump to declaration
+    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+
+    -- Lists all the implementations for the symbol under the cursor
+    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+
+    -- Jumps to the definition of the type symbol
+    bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+
+    -- Lists all the references
+    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+
+    -- Displays a function's signature information
+    bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+
+    -- Renames all references to the symbol under the cursor
+    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+
+    -- Format current file
+    bufmap('n', '<F3>', '<cmd>lua vim.lsp.buf.format()<cr>')
+
+    -- Selects a code action available at the current cursor position
+    bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+  end
 })
