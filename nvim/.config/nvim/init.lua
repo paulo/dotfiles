@@ -28,7 +28,7 @@ Plug 'nvim-telescope/telescope.nvim'
 
 -- Auto-complete engine
 Plug('ms-jpq/coq_nvim', {branch = 'coq'})
-Plug('github/copilot.vim')
+Plug('github/copilot.vim') -- TODO: try 'zbirenbaum/copilot.lua' instead
 Plug('ms-jpq/coq.thirdparty')
 
 -- Snippets
@@ -74,6 +74,15 @@ Plug('fatih/vim-go', {['do'] = ':GoUpdateBinaries'})
 Plug 'vim-ruby/vim-ruby'
 -- C++
 Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp', 'cc', 'h'}})
+
+-- AI assistance
+Plug 'stevearc/dressing.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'MeanderingProgrammer/render-markdown.nvim'
+Plug 'HakonHarnes/img-clip.nvim'
+-- Pass source=true if you want to build from source
+Plug('yetone/avante.nvim', { branch = 'main', ['do'] = 'make' })
 
 vim.call('plug#end')
 
@@ -147,6 +156,7 @@ require('search')
 require('display')
 require('edit')
 require('autocomplete')
+require('ai')
 
 -- rusty-tags configuration
 vim.cmd("autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi")
