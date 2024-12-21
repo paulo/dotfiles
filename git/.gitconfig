@@ -1,17 +1,4 @@
 # This is Git's per-user configuration file.
-[user]
-	name = Paulo Araújo
-	email = paulo.araujo@netlify.com
-
-[user]
-	name = Paulo
-	email = paulorccaraujo@gmail.com
-
-[core]
-	excludesfile = ~/.gitignore_global
-    	editor = nvim
-    	attributesfile = /Users/pauloaraujo/.gitattributes
-    	pager = delta
 
 [push]
 	default = current
@@ -51,3 +38,11 @@
 	defaultBranch = main
 [credential]
 	helper = store
+
+# Config depending on which type of repo I'm working on
+# From https://www.benji.dog/articles/git-config/
+[includeIf "hasconfig:remote.*.url:git@github.com:netlify/**"]
+  path = ~/.config/git/config-work
+
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+  path = ~/.config/git/config-personal
