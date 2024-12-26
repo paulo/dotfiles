@@ -41,15 +41,6 @@ vim.api.nvim_set_keymap('v', '<leader>a:', ':Tab /:\zs<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader>a\\|', ':Tab /\\|<CR>', {})
 vim.api.nvim_set_keymap('v', '<leader>a\\|', ':Tab /\\|<CR>', {})
 
--- Ctrl+Shift+F mappings
-vim.api.nvim_set_keymap('n', '<C-F>f', '<Plug>CtrlSFPrompt', {})
-vim.api.nvim_set_keymap('v', '<C-F>f', '<Plug>CtrlSFVwordPath', {})
-vim.api.nvim_set_keymap('n', '<C-F>n', '<Plug>CtrlSFCwordPath', {})
-vim.api.nvim_set_keymap('n', '<C-F>p', '<Plug>CtrlSFPwordPath', {})
-vim.api.nvim_set_keymap('n', '<C-F>o', ':CtrlSFOpen<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-F>t', ':CtrlSFToggle<CR>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-F>t', '<Esc>:CtrlSFToggle<CR>', { noremap = true })
-
 -- Enable folding
 vim.opt.foldmethod = 'indent'
 vim.opt.foldlevel = 99
@@ -67,5 +58,5 @@ vim.g.neoformat_only_msg_on_error = 1
 vim.api.nvim_create_autocmd("BufWritePre", {
   group = vim.api.nvim_create_augroup("fmt", { clear = true }),
   pattern = "*",
-  command = "undojoin | Neoformat",
+  command = "try | undojoin | Neoformat | catch /E790/ | Neoformat | endtry",
 })

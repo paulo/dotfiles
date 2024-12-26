@@ -59,4 +59,8 @@ vscode/Library/Application\ Support/Code/User/workspaceStorage
 vscode/Library/Application\ Support/Code/User/History
 vscode/Library/Application\ Support/Code/User/sync
 vscode/Library/Application\ Support/Code/databases
-
+vscode/Library/Application\ Support/Code/DawnCache/*
+vscode/Library/Application\ Support/Code/Shared Dictionary/*
+vscode/Library/Application\ Support/Code/Trust\ Tokens
+vscode/Library/Application\ Support/Code/Trust\ Tokens-journal
+vscode/Library/Application\ Support/Code/WebStorage/*

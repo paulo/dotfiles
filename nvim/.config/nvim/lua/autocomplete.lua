@@ -35,7 +35,7 @@ lsp.clangd.setup(coq.lsp_ensure_capabilities({}))
 -- JS/TS/CSS/etc, requires npm install [-g] @biomejs/biome
 -- Maybe use instead of neoformat + ESLint + Prettier in the future
 -- TypeScript, requires `npm i -g typescript-language-server`
-lsp.tsserver.setup(
+lsp.ts_ls.setup(
   coq.lsp_ensure_capabilities({
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     cmd = { "typescript-language-server", "--stdio" }
@@ -76,10 +76,12 @@ vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { 
 -- Required for operations modifying multiple buffers like rename.
 vim.o.hidden = true
 
--- Configure copilot
-require("coq_3p") {
-  { src = "copilot", short_name = "COP", accept_key = "<C-f>" }
-}
+-- Configure copilot to complete with C-f
+vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.g.copilot_no_tab_map = true
 
 require("diaglist").init({
     -- optional settings

@@ -39,10 +39,21 @@
 [credential]
 	helper = store
 
+[core]
+	excludesfile = ~/.gitignore_global
+    	editor = nvim
+    	attributesfile = /Users/paulo/.gitattributes
+    	pager = delta
+
+[user]
+	name = paulo
+	email = paulorccaraujo@gmail.com
+
 # Config depending on which type of repo I'm working on
+# If on a work repo, use work config instead
 # From https://www.benji.dog/articles/git-config/
 [includeIf "hasconfig:remote.*.url:git@github.com:netlify/**"]
-  path = ~/.config/git/config-work
+  path = /Users/paulo/.config/git/config-work
 
-[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
-  path = ~/.config/git/config-personal
+[includeIf "hasconfig:remote.*.url:https://github.com/netlify/**"]
+  path = /Users/paulo/.config/git/config-work
