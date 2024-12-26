@@ -90,16 +90,13 @@ vim.call('plug#end')
 vim.cmd('syntax enable')
 -- vim.cmd('colorscheme tender') -- transitioning to nordic
 
--- Default: https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
-local palette = require 'nordic.colors'
-palette.gray0 = '#262626'
-palette.blue1 = '#73cef4'
--- palette.green.base = '#d3b987'
-
--- https://github.com/AlexvZyl/nordic.nvim
 require 'nordic' .setup {
     -- This callback can be used to override the colors used in the palette.
-    on_palette = function(palette) return palette end,
+    -- Default: https://github.com/AlexvZyl/nordic.nvim/blob/main/lua/nordic/colors/nordic.lua
+    on_palette = function(palette)
+        palette.gray0 = '#262626'
+        palette.blue1 = '#73cef4'
+    end,
     -- Enable bold keywords.
     bold_keywords = true,
     -- Enable italic comments.
