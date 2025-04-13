@@ -26,11 +26,6 @@ Plug 'christoomey/vim-tmux-navigator' -- Seamlessly navigate between vim splits 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
--- Auto-complete engine
-Plug('ms-jpq/coq_nvim', {branch = 'coq'})
-Plug('github/copilot.vim') -- TODO: try 'zbirenbaum/copilot.lua' instead
-Plug('ms-jpq/coq.thirdparty')
-
 -- Snippets
 Plug('ms-jpq/coq.artifacts', {branch = 'artifacts'})
 
@@ -77,12 +72,19 @@ Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp', 'cc', 'h'}})
 
 -- AI assistance
 Plug 'stevearc/dressing.nvim'
-Plug 'nvim-lua/plenary.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'MeanderingProgrammer/render-markdown.nvim'
 Plug 'HakonHarnes/img-clip.nvim'
+Plug('github/copilot.vim') -- I tried try 'zbirenbaum/copilot.lua', and
+-- although it's pure Lua, the config is hard to get right. I'll try again in
+-- the future.
+
 -- Pass source=true if you want to build from source
 Plug('yetone/avante.nvim', { branch = 'main', ['do'] = 'make' })
+
+-- Auto-complete engine
+Plug('ms-jpq/coq_nvim', {branch = 'coq'})
+Plug('ms-jpq/coq.thirdparty')
 
 vim.call('plug#end')
 
@@ -154,8 +156,8 @@ require('navigation')
 require('search')
 require('display')
 require('edit')
-require('autocomplete')
 require('ai')
+require('autocomplete')
 
 -- rusty-tags configuration
 vim.cmd("autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi")

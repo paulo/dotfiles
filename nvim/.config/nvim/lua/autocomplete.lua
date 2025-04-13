@@ -3,11 +3,6 @@ vim.g.coq_settings = {
   auto_start = 'shut-up',
   keymap = {
     jump_to_mark = '<c-?>'
-  },
-  clients = {
-    tabnine = {
-      enabled = true
-    }
   }
 }
 
@@ -75,13 +70,6 @@ vim.api.nvim_set_keymap('i', '<S-Tab>', 'pumvisible() ? "<C-p>" : "<S-Tab>"', { 
 -- Language server config
 -- Required for operations modifying multiple buffers like rename.
 vim.o.hidden = true
-
--- Configure copilot to complete with C-f
-vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
-vim.g.copilot_no_tab_map = true
 
 require("diaglist").init({
     -- optional settings
