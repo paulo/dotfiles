@@ -90,7 +90,6 @@ vim.call('plug#end')
 
 -- Set colorscheme
 vim.cmd('syntax enable')
--- vim.cmd('colorscheme tender') -- transitioning to nordic
 
 require 'nordic' .setup {
     -- This callback can be used to override the colors used in the palette.
@@ -99,6 +98,7 @@ require 'nordic' .setup {
         palette.gray0 = '#262626'
         palette.blue1 = '#73cef4'
     end,
+
     -- Enable bold keywords.
     bold_keywords = true,
     -- Enable italic comments.
@@ -123,6 +123,10 @@ require 'nordic' .setup {
         theme = 'dark',
         -- Blending the cursorline bg with the buffer bg.
         blend = 0.75,
+    },
+    telescope = {
+        -- Available styles: `classic`, `flat`.
+        style = 'flat',
     }
 }
 

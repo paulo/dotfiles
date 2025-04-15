@@ -26,6 +26,9 @@ vim.cmd("hi NvimTreeOpenedFolderName guifg=#CAE3F7 gui=bold ctermfg=Blue")
 vim.cmd("hi NvimTreeRootFolder guifg=#ECBEB4 gui=bold ctermfg=Blue")
 vim.cmd("hi NvimTreeFolderIcon guifg=#A3CEF1 ctermfg=Blue")
 vim.cmd("hi NvimTreeGitDirty guifg=#F97068 gui=bold ctermfg=Blue")
+vim.cmd("hi NvimTreeGitDirty guifg=#F97068 gui=bold ctermfg=Blue")
+vim.cmd("hi NvimTreeNormal guifg=#73cef4 gui=bold ctermfg=Red")
+vim.cmd("hi NvimTreeNormalNC guifg=#73cef4 gui=bold ctermfg=Red")
 
 -- Configure vim-go highlighting
 vim.g.go_highlight_structs = 1
