@@ -10,8 +10,7 @@ local Plug = vim.fn['plug#']
 vim.call('plug#begin', '~/.config/nvim/plugged')
 
 -- Themes and powerline
-Plug 'itchyny/lightline.vim'
-Plug 'jacoborus/tender.vim'
+Plug 'nvim-lualine/lualine.nvim'
 Plug('AlexvZyl/nordic.nvim', { branch = 'main' })
 
 -- Directory, file and buffer navigation

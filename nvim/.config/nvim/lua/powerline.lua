@@ -1,73 +1,44 @@
--- Lightline configuration (status bar)
-local LightlineFugitive = function()
-  local fname = vim.fn.expand('%:t')
-  if fname:match('NvimTree') then
-    return ''
-  elseif vim.fn.exists('*fugitive#head') ~= 0 then
-    local branch = vim.fn['fugitive#head']()
-    return branch ~= '' and ' ' .. branch or ''
-  end
-  return ''
-end
-
-local NerdPercent = function()
-  local fname = vim.fn.expand('%:t')
-  if fname:match('NvimTree') then
-    return ''
-  end
-  return tostring(vim.fn.line('.') * 100 / vim.fn.line('$')) .. '%'
-end
-
--- based of itchyny/lightline-powerful
-vim.g.lightline = {
-  colorscheme = 'tender',
-  active = {
-    left = {
-      { 'mode', 'paste' },
-      { 'gitbranch', 'filename' },
+-- Lualine configuration (status bar)
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '|', right = '|' },
+    section_separators = '',
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
     },
-    right = {
-      { 'lineinfo' },
-      { 'percent' },
-      { 'filetype' },
-    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    always_show_tabline = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 100,
+      tabline = 100,
+      winbar = 100,
+    }
   },
-  inactive = {
-    left = {
-      { 'filename' },
-    },
-    right = {
-      { 'lineinfo' },
-      { 'percent' },
-    },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   },
-  tabline = {
-    left = {
-      { 'buffers' },
-    },
-    right = {},
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
   },
-  tab = {
-    active = { 'tabnum', 'readonly', 'filename', 'modified' },
-    inactive = { 'tabnum', 'readonly', 'filename', 'modified' },
-  },
-  component = {
-    lineinfo = ' %3l:%-2v',
-  },
-  component_function = {
-    gitbranch = 'LightlineFugitive',
-    percent = 'NerdPercent',
-  },
-}
-
--- Powerline-like separators
-vim.g.lightline.separator = {
-  left = '',
-  right = '',
-}
-vim.g.lightline.subseparator = {
-  left = '',
-  right = '',
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {'nvim-tree', 'quickfix', 'fugitive' }
 }
 
 -- Get rid of 'insert' mode indicator in command line
@@ -79,16 +50,3 @@ vim.cmd('hi SignColumn ctermbg=235')
 
 -- Lightline configuration (upper bar)
 vim.o.showtabline = 1 -- Hide tabline (2 to show)
-
--- Bufferline functionality for the lightline vim plugin
--- vim.g.lightline.tabline = { left = { { 'buffers' } }, right = {} }
--- vim.g.lightline.component_expand = { buffers = 'lightline#bufferline#buffers' }
--- vim.g.lightline.component_type = { buffers = 'tabsel' }
-
--- if vim.fn.has('gui_running') == 1 then
---   vim.o.guioptions = vim.o.guioptions:gsub('e', '') -- Don't use GUI tabline
--- end
-
--- From 'mengelbrecht/lightline-bufferline'
--- vim.g.lightline_filename_modifier = ':t'
-
