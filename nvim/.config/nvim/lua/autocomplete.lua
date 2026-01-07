@@ -9,10 +9,9 @@ vim.g.coq_settings = {
 -- https://github.com/ms-jpq/coq_nvim
 -- Requires universal-ctags (from brew)
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-local lsp = require "lspconfig"
 local coq = require "coq"
 
-lsp.gopls.setup(coq.lsp_ensure_capabilities({
+vim.lsp.config('gopls', coq.lsp_ensure_capabilities({
   settings = {
     gopls =  {
       env = {
@@ -22,15 +21,15 @@ lsp.gopls.setup(coq.lsp_ensure_capabilities({
   }
 }))
 
-lsp.solargraph.setup(coq.lsp_ensure_capabilities({}))
-lsp.pyright.setup(coq.lsp_ensure_capabilities({}))
-lsp.bashls.setup(coq.lsp_ensure_capabilities({}))
-lsp.clangd.setup(coq.lsp_ensure_capabilities({}))
+vim.lsp.config('solargraph', coq.lsp_ensure_capabilities({}))
+vim.lsp.config('pyright', coq.lsp_ensure_capabilities({}))
+vim.lsp.config('bashls', coq.lsp_ensure_capabilities({}))
+vim.lsp.config('clangd', coq.lsp_ensure_capabilities({}))
 
 -- JS/TS/CSS/etc, requires npm install [-g] @biomejs/biome
 -- Maybe use instead of neoformat + ESLint + Prettier in the future
 -- TypeScript, requires `npm i -g typescript-language-server`
-lsp.ts_ls.setup(
+vim.lsp.config('ts_ls',
   coq.lsp_ensure_capabilities({
     filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
     cmd = { "typescript-language-server", "--stdio" }
@@ -39,7 +38,7 @@ lsp.ts_ls.setup(
 
 -- Linting engine for JavaScript / Typescript, requires `npm i -g vscode-langservers-extracted`
 -- Try `mfussenegger/nvim-lint` instead if it doesn't work
-lsp.eslint.setup(coq.lsp_ensure_capabilities{
+vim.lsp.config('eslint', coq.lsp_ensure_capabilities{
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -51,9 +50,9 @@ lsp.eslint.setup(coq.lsp_ensure_capabilities{
 -- HTML/CSS/JSON, requires npm i -g vscode-langservers-extracted
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-lsp.html.setup(coq.lsp_ensure_capabilities({}))
+vim.lsp.config('html', coq.lsp_ensure_capabilities({}))
 -- Requires npm i -g @olrtg/emmet-language-server
-lsp.emmet_language_server.setup(coq.lsp_ensure_capabilities({}))
+vim.lsp.config('emmet_language_server', coq.lsp_ensure_capabilities({}))
 
 -- This will show the popup menu even if there's only one match (menuone),
 -- prevent automatic selection (noselect) and prevent automatic text injection

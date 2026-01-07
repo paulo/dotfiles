@@ -24,12 +24,16 @@ require('avante').setup({
     debounce = 600,
     throttle = 600,
   },
-  claude = {
-    endpoint = "https://api.anthropic.com",
-    model = "claude-3-5-haiku-20241022",
-    max_tokens = 4096,
-    temperature = 0,
-    disable_tools = false
+  providers = {
+    claude = {
+      endpoint = "https://api.anthropic.com",
+      model = "claude-3-5-haiku-20241022",
+      extra_request_body = {
+        max_tokens = 4096,
+        temperature = 0, 
+      },
+      disable_tools = false
+    } 
   },
   mappings = {
     suggestion = {

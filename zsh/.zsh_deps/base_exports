@@ -7,7 +7,7 @@
 # Tools
 export LOCAL_PATH="/usr/local"
 export BASE_PATH="$PATH:/usr/bin:/usr/local/bin:/bin:/usr/sbin:/sbin"
-export NODE_PATH="/Users/paulo/.nvm/versions/node/v20.10.0/bin"
+export NODE_PATH="/Users/paulo/.nvm/versions/node/v22.12.0/bin"
 export DEV_HOME="$HOME/dev"
 export LATEX_PATH="/usr/local/texlive/2024/bin/universal-darwin"
 
