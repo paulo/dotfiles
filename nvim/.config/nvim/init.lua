@@ -39,7 +39,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'ConradIrwin/vim-bracketed-paste' -- Avoid indenting when pasting
 Plug 'tpope/vim-sleuth' -- Automatically set idententation and tabs on buffers
 Plug 'pboettch/vim-cmake-syntax' -- Cmake syntax highlighting
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate', ['branch'] = 'master'})
 
 -- Code edition
 Plug 'scrooloose/nerdcommenter' -- Comment code.
@@ -80,6 +80,7 @@ Plug('github/copilot.vim') -- I tried try 'zbirenbaum/copilot.lua', and
 
 -- Pass source=true if you want to build from source
 Plug('yetone/avante.nvim', { branch = 'main', ['do'] = 'make' })
+Plug 'folke/snacks.nvim'-- for modern input UI
 
 -- Auto-complete engine
 Plug('ms-jpq/coq_nvim', {branch = 'coq'})
