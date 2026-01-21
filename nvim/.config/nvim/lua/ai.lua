@@ -1,12 +1,18 @@
 -- AI assistant config
 
--- Configure copilot to complete with C-f
-vim.keymap.set('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
-  expr = true,
-  replace_keycodes = false
+-- copilot config
+require('copilot').setup({
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    hide_during_completion = true,
+    debounce = 0,
+    trigger_on_accept = true,
+    keymap = {
+      accept = "<C-f>",
+    },
+  },
 })
-vim.g.copilot_no_tab_map = true
-
 
 -- Avante
 

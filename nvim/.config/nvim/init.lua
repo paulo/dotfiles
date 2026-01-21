@@ -74,9 +74,7 @@ Plug 'stevearc/dressing.nvim'
 Plug 'MunifTanjim/nui.nvim'
 Plug 'MeanderingProgrammer/render-markdown.nvim'
 Plug 'HakonHarnes/img-clip.nvim'
-Plug('github/copilot.vim') -- I tried try 'zbirenbaum/copilot.lua', and
--- although it's pure Lua, the config is hard to get right. I'll try again in
--- the future.
+Plug 'zbirenbaum/copilot.lua'
 
 -- Pass source=true if you want to build from source
 Plug('yetone/avante.nvim', { branch = 'main', ['do'] = 'make' })

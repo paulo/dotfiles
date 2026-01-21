@@ -54,6 +54,9 @@ vim.lsp.config('html', coq.lsp_ensure_capabilities({}))
 -- Requires npm i -g @olrtg/emmet-language-server
 vim.lsp.config('emmet_language_server', coq.lsp_ensure_capabilities({}))
 
+-- Enable LSPs
+vim.lsp.enable({'gopls', 'solargraph', 'pyright', 'bashls', 'clangd', 'ts_ls', 'eslint', 'html', 'emmet_language_server'})
+
 -- This will show the popup menu even if there's only one match (menuone),
 -- prevent automatic selection (noselect) and prevent automatic text injection
 -- into the current line (noinsert).
