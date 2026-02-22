@@ -49,6 +49,9 @@
 	name = paulo
 	email = paulorccaraujo@gmail.com
 
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+
 # Config depending on which type of repo I'm working on
 # If on a work repo, use work config instead
 # From https://www.benji.dog/articles/git-config/

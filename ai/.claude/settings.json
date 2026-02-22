@@ -1,0 +1,13 @@
+{
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(go *)",
+      "Bash(goimports *)",
+      "Bash(golangci-lint *)"
+    ]
+  }
+}
