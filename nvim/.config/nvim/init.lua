@@ -52,6 +52,7 @@ Plug 'justinmk/vim-sneak' -- Jump to any location specified by two characters
 Plug 'godlygeek/tabular' -- Align equals
 Plug 'dyng/ctrlsf.vim' -- Simulates sublime's Ctrl+Shift+F
 Plug 'sbdchd/neoformat' -- Format code automatically
+Plug 'esmuellert/codediff.nvim' -- provides VSCode-style diff rendering
 
 -- Accessibility
 Plug 'christoomey/vim-system-copy' -- Copy to clipboard
