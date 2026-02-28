@@ -1,7 +1,4 @@
 {
-  "enabledPlugins": {
-    "gopls-lsp@claude-plugins-official": true
-  },
   "permissions": {
     "allow": [
       "Bash(git *)",
@@ -9,5 +6,9 @@
       "Bash(goimports *)",
       "Bash(golangci-lint *)"
     ]
+  },
+  "enabledPlugins": {
+    "gopls-lsp@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true
   }
 }

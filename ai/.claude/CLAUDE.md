@@ -1,3 +1,7 @@
+# General Behavior
+
+- When asked to fetch a URL, do it immediately without asking for confirmation.
+
 # Claude Code Guidelines
 
 ## Implementation Best Practices
