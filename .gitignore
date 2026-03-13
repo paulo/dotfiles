@@ -35,7 +35,7 @@ nvim/.config/nvim/autoload/*
 tags
 
 # Override global gitignore for .claude
-!.claude
+!ai/.claude
 
 # Secrets and private stuff
 zsh/.zsh_deps/private
