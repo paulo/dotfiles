@@ -1,6 +1,14 @@
 {
   "permissions": {
     "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Grep",
+      "Glob",
+      "Agent",
+      "Skill",
+      "ToolSearch",
       "Bash(git *)",
       "Bash(go *)",
       "Bash(goimports *)",
@@ -22,7 +30,13 @@
       "Bash(which *)",
       "Bash(command *)",
       "Bash(pip3 *)",
-      "Bash(rsvg-convert *)"
+      "Bash(rsvg-convert *)",
+      "Bash(grep *)",
+      "Bash(sed *)",
+      "Bash(head *)",
+      "Bash(gofmt *)",
+      "Bash(wc *)",
+      "Bash(rm *)"
     ],
     "deny": [
       "Bash(rm -rf *)",
