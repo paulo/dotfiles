@@ -36,7 +36,32 @@
       "Bash(head *)",
       "Bash(gofmt *)",
       "Bash(wc *)",
-      "Bash(rm *)"
+      "Bash(rm *)",
+      "Bash(echo *)",
+      "Bash(find *)",
+      "Bash(tree *)",
+      "Bash(yarn *)",
+      "Bash(hexdump *)",
+      "Bash(env *)",
+      "Bash(export *)",
+      "Bash(tail *)",
+      "Bash(DRIZZLE_PKG_TOKEN=* yarn *)",
+      "Bash(DRIZZLE_PKG_TOKEN=* npx *)",
+      "Bash(cd *)",
+      "Bash(DOSCENTER_REDIS_ADDR=* *)",
+      "Bash(GOFLAGS=* *)",
+      "Bash(redis-server *)",
+      "Bash(redis-cli *)",
+      "Bash(bundle *)",
+      "Bash(chmod *)",
+      "Bash(for *)",
+      "Bash(pgrep *)",
+      "Bash(astro *)",
+      "Bash(hugo *)",
+      "WebFetch",
+      "WebSearch",
+      "AskUserQuestion",
+      "ExitPlanMode"
     ],
     "deny": [
       "Bash(rm -rf *)",
@@ -60,7 +85,9 @@
     "claude-md-management@claude-plugins-official": true,
     "ruby-lsp@claude-plugins-official": true,
     "clangd-lsp@claude-plugins-official": true,
-    "everything-claude-code@everything-claude-code": true
+    "everything-claude-code@everything-claude-code": true,
+    "ralph-skills@ralph-marketplace": true,
+    "lua-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "anthropic-agent-skills": {
@@ -74,6 +101,13 @@
         "source": "github",
         "repo": "affaan-m/everything-claude-code"
       }
+    },
+    "ralph-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "snarktank/ralph"
+      }
     }
-  }
+  },
+  "skipAutoPermissionPrompt": true
 }

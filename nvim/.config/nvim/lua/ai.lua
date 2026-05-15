@@ -32,6 +32,7 @@ require('avante').setup({
   },
   providers = {
     claude = {
+      -- auth_type = "max",
       endpoint = "https://api.anthropic.com",
       model = "claude-sonnet-4-6",
       extra_request_body = {
