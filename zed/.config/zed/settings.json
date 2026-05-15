@@ -1,0 +1,172 @@
+// Zed settings — ported from neovim config
+// For docs: https://zed.dev/docs/configuring-zed
+{
+  // Vim mode with comma as leader
+  "vim_mode": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  },
+
+  // Theme — Nord-based dark theme (closest to nordic.nvim)
+  "theme": {
+    "mode": "dark",
+    "dark": "Ayu Mirage",
+    "light": "One Light"
+  },
+
+  // Font
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+
+  // Line numbers — relative with absolute current line (like relativenumber + number)
+  "relative_line_numbers": true,
+
+  // Cursor
+  "cursor_blink": true,
+  "current_line_highlight": "gutter",
+
+  // Tab/indent defaults (4 spaces, expandtab, smarttab)
+  "tab_size": 4,
+  "hard_tabs": false,
+
+  // Per-language overrides matching neovim autocmds
+  "languages": {
+    "HTML": {
+      "tab_size": 2
+    },
+    "Ruby": {
+      "tab_size": 2
+    },
+    "C++": {
+      "tab_size": 2
+    },
+    "C": {
+      "tab_size": 2
+    },
+    "Go": {
+      "tab_size": 4,
+      "hard_tabs": true,
+      "formatter": "language_server"
+    },
+    "JavaScript": {
+      "tab_size": 4
+    },
+    "TypeScript": {
+      "tab_size": 4
+    },
+    "TSX": {
+      "tab_size": 4
+    }
+  },
+
+  // Autosave on focus lost (matches: autocmd TextChanged,InsertLeave,FocusLost * wall)
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000
+    }
+  },
+
+  // Format on save (matches neoformat BufWritePre)
+  "format_on_save": "on",
+
+  // Remove trailing whitespace on save (matches: autocmd BufWritePre * %s/\s\+$//e)
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+
+  // Wrap at 80 columns (matches textwidth=80, wrap=true)
+  "soft_wrap": "preferred_line_length",
+  "preferred_line_length": 80,
+
+  // Show wrap indicator (matches showbreak = ' ↳ ')
+  "show_wrap_guides": true,
+  "wrap_guides": [80],
+
+  // Search — case insensitive (matches ignorecase)
+  "search": {
+    "case_sensitive": false
+  },
+
+  // Splits — matches splitbelow and splitright
+  "pane_split_direction_horizontal": "down",
+  "pane_split_direction_vertical": "right",
+
+  // Scrolloff (comfortable scrolling)
+  "vertical_scroll_margin": 5,
+
+  // File tree on left, 30px width (matches nvim-tree config)
+  "project_panel": {
+    "button": true,
+    "dock": "left",
+    "default_width": 240
+  },
+
+  // Hide mode indicator in status bar (matches showmode=false)
+  // Zed shows mode in status bar by default with vim mode
+
+  // Diagnostics — show inline (matches virtual_text=true)
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+
+  // Copilot / inline completions (matches copilot.lua config)
+  "show_inline_completions": true,
+  "inline_completions": {
+    "disabled_globs": [".env"]
+  },
+
+  // LSP — Zed auto-detects most language servers
+  // gopls, pyright, typescript-language-server, eslint, clangd, solargraph
+  // are all supported out of the box
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "env": {
+          "GOOS": "linux"
+        }
+      }
+    }
+  },
+
+  // Git gutter (matches vim-fugitive + git signs)
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+
+  // Indent guides (matches indentLine plugin)
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "fixed"
+  },
+
+  // Inlay hints
+  "inlay_hints": {
+    "enabled": true
+  },
+
+  // Telemetry
+  "telemetry": {
+    "metrics": false
+  },
+
+  // Agent/AI
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+
+  // File scan exclusions (matches nvim-tree filters and telescope ignore)
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "**/target",
+    "**/.DS_Store",
+    "**/dist",
+    "**/tags"
+  ]
+}

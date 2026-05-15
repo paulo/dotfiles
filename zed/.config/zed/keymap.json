@@ -1,0 +1,111 @@
+// Zed keymap — ported from neovim config
+// Leader is comma (,) in vim mode
+[
+  // =============================================
+  // Normal mode bindings
+  // =============================================
+  {
+    "context": "VimControl && !menu",
+    "bindings": {
+      // --- File/buffer navigation (matches Telescope bindings) ---
+      // ,f → find files (Telescope find_files)
+      ", f": "file_finder::Toggle",
+      // ,/ → live grep (Telescope live_grep)
+      ", /": "pane::DeploySearch",
+      // ,b → buffer list (Telescope buffers)
+      ", b": "tab_switcher::Toggle",
+
+      // --- File tree (matches nvim-tree) ---
+      // ,d → toggle file tree (NvimTreeToggle)
+      ", d": "workspace::ToggleLeftDock",
+      // ,,d → reveal current file in tree (NvimTreeFindFile)
+      ", , d": "pane::RevealInProjectPanel",
+
+      // --- Splits (matches base.lua split bindings) ---
+      // ,s → horizontal split
+      ", s": "pane::SplitDown",
+      // ,v → vertical split
+      ", v": "pane::SplitRight",
+
+      // --- Buffer navigation ---
+      // ,h → previous buffer (matches :bp)
+      ", h": "pane::ActivatePrevItem",
+      // ,l → next buffer (matches :bn)
+      ", l": "pane::ActivateNextItem",
+      // ,t → new empty buffer (matches :enew)
+      ", t": "workspace::NewFile",
+      // ,q → close current buffer (matches :bp | bd #)
+      ", q": "pane::CloseActiveItem",
+
+      // --- Folding (matches: space → za) ---
+      "space": "editor::ToggleFold",
+
+      // --- Split navigation with ctrl (matches C-h/j/k/l → C-w h/j/k/l) ---
+      "ctrl-h": ["workspace::ActivatePaneInDirection", "Left"],
+      "ctrl-j": ["workspace::ActivatePaneInDirection", "Down"],
+      "ctrl-k": ["workspace::ActivatePaneInDirection", "Up"],
+      "ctrl-l": ["workspace::ActivatePaneInDirection", "Right"],
+
+      // --- LSP bindings (matches autocomplete.lua LspAttach) ---
+      // gd → go to definition
+      "g d": "editor::GoToDefinition",
+      // gD → go to declaration
+      "g shift-d": "editor::GoToDeclaration",
+      // gi → go to implementation
+      "g i": "editor::GoToImplementation",
+      // go → go to type definition
+      "g o": "editor::GoToTypeDefinition",
+      // gr → find all references
+      "g r": "editor::FindAllReferences",
+
+      // F2 → rename symbol
+      "f2": "editor::Rename",
+      // F3 → format file
+      "f3": "editor::Format",
+      // F4 → code action
+      "f4": "editor::ToggleCodeActions",
+
+      // --- Quickfix-like navigation (matches ,j / ,k) ---
+      ", j": "editor::GoToDiagnostic",
+      ", k": "editor::GoToPrevDiagnostic",
+
+      // --- Search in project (matches CtrlSF / Rg) ---
+      ", , /": "search::SelectAllMatches"
+    }
+  },
+
+  // =============================================
+  // Insert mode bindings
+  // =============================================
+  {
+    "context": "vim_mode == insert && Editor && !menu",
+    "bindings": {
+      // Copilot accept with ctrl-f (matches copilot.lua keymap)
+      "ctrl-f": "editor::AcceptInlineCompletion"
+    }
+  },
+
+  // =============================================
+  // Global bindings (any context)
+  // =============================================
+  {
+    "context": "Workspace",
+    "bindings": {
+      // Matches fzf ,,f and ,,/ bindings
+      "cmd-shift-f": "workspace::NewSearch"
+    }
+  },
+
+  // =============================================
+  // Project panel bindings (matches nvim-tree on_attach)
+  // =============================================
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      // v → open in vertical split (matches nvim-tree 'v')
+      "v": "project_panel::OpenPermanent",
+      // s → open in horizontal split (matches nvim-tree 's')
+      "s": "project_panel::OpenPermanent"
+    }
+  }
+]
