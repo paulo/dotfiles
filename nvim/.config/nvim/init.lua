@@ -39,7 +39,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'ConradIrwin/vim-bracketed-paste' -- Avoid indenting when pasting
 Plug 'tpope/vim-sleuth' -- Automatically set idententation and tabs on buffers
 Plug 'pboettch/vim-cmake-syntax' -- Cmake syntax highlighting
-Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate', ['branch'] = 'master'})
+Plug 'romus204/tree-sitter-manager.nvim'
 
 -- Code edition
 Plug 'scrooloose/nerdcommenter' -- Comment code.
