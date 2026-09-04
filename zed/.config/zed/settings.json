@@ -23,7 +23,7 @@
 
   // Cursor
   "cursor_blink": true,
-  "current_line_highlight": "gutter",
+  "current_line_highlight": "all",
 
   // Tab/indent defaults (4 spaces, expandtab, smarttab)
   "tab_size": 4,
@@ -93,15 +93,20 @@
   // Scrolloff (comfortable scrolling)
   "vertical_scroll_margin": 5,
 
-  // File tree on left, 30px width (matches nvim-tree config)
+  // File tree on left (matches nvim-tree: width=30, side=left, git enabled)
   "project_panel": {
     "button": true,
     "dock": "left",
     "default_width": 240
   },
 
-  // Hide mode indicator in status bar (matches showmode=false)
-  // Zed shows mode in status bar by default with vim mode
+  // Tab bar — only show when there are multiple tabs (matches showtabline=1)
+  "tab_bar": {
+    "show": true
+  },
+
+  // Status bar shows mode, branch, diagnostics, file info (matches lualine config)
+  // showmode=false in neovim since lualine handles it — Zed shows mode in status bar natively
 
   // Diagnostics — show inline (matches virtual_text=true)
   "diagnostics": {

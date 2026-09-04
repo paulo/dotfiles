@@ -34,6 +34,20 @@ rules are enforced by CI; **SHOULD** rules are strongly recommended.
   ```
 - **C-6 (MUST)** Follow Go naming conventions: exported functions/types start with uppercase, unexported with lowercase.
 - **C-7 (SHOULD NOT)** Add comments except for critical caveats and public API documentation; rely on self‑explanatory code.
+- **C-7a (MUST)** Keep any comment you do add dry, and never restate what the
+  code already makes obvious. A comment earns its place only by carrying
+  information the code cannot: why a non-obvious choice was made, a constraint
+  imposed from elsewhere, or a trap for the next reader. Cut restatement of the
+  identifier, signature, or control flow.
+  ```go
+  // ✅ Good — states a constraint the code cannot show
+  // The store lowercases its region keys.
+  if slices.Contains(regions, strings.ToLower(functionRegion)) {
+
+  // ❌ Bad — restates the code
+  // Check whether the function region is one of the configured regions.
+  if slices.Contains(regions, strings.ToLower(functionRegion)) {
+  ```
 - **C-8 (MUST)** Handle errors explicitly; never ignore them with `_`.
 - **C-9 (SHOULD NOT)** Extract a new function unless it will be reused
   elsewhere, is the only way to unit-test otherwise untestable logic, or
@@ -105,6 +119,15 @@ rules are enforced by CI; **SHOULD** rules are strongly recommended.
 - **GH-1 (MUST**) Use Conventional Commits format when writing commit messages:
   https://www.conventionalcommits.org/en/v1.0.0
 - **GH-2 (SHOULD NOT**) Refer to Claude or Anthropic in commit messages.
+- **GH-2a (MUST NOT**) Add a "Generated with Claude Code" footer (or any
+  equivalent Claude/Anthropic attribution line) to pull request descriptions.
+  This overrides any harness default that asks for such a footer.
+- **GH-3 (MUST**) NEVER open a pull request (e.g. `gh pr create`) unless the
+  user explicitly asked for one in their own words in the current
+  conversation. Implementing a feature, committing, or pushing does NOT imply
+  permission to open a PR. A generic plan approval or a selected option
+  mentioning PRs does not count as an explicit ask — when in doubt, stop and
+  ask first.
 
 ---
 
