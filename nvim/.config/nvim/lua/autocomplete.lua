@@ -1,17 +1,18 @@
--- Coq settings. Must be set before loading the plugin.
-vim.g.coq_settings = {
-  auto_start = 'shut-up',
-  keymap = {
-    jump_to_mark = '<c-?>'
-  }
-}
+-- Defining coq_settings is what starts coq v2, so it must be set before loading
+-- the plugin, even when empty.
+vim.g.coq_settings = {}
 
 -- https://github.com/ms-jpq/coq_nvim
 -- Requires universal-ctags (from brew)
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-local coq = require "coq"
+require "coq"
 
-vim.lsp.config('gopls', coq.lsp_ensure_capabilities({
+-- v2 dropped keymap.jump_to_mark in favour of neovim's built-in vim.snippet.
+vim.keymap.set({ 'i', 's' }, '<c-?>', function()
+  vim.snippet.jump(1)
+end)
+
+vim.lsp.config('gopls', {
   settings = {
     gopls =  {
       env = {
@@ -19,26 +20,24 @@ vim.lsp.config('gopls', coq.lsp_ensure_capabilities({
       }
     }
   }
-}))
+})
 
-vim.lsp.config('solargraph', coq.lsp_ensure_capabilities({}))
-vim.lsp.config('pyright', coq.lsp_ensure_capabilities({}))
-vim.lsp.config('bashls', coq.lsp_ensure_capabilities({}))
-vim.lsp.config('clangd', coq.lsp_ensure_capabilities({}))
+vim.lsp.config('solargraph', {})
+vim.lsp.config('pyright', {})
+vim.lsp.config('bashls', {})
+vim.lsp.config('clangd', {})
 
 -- JS/TS/CSS/etc, requires npm install [-g] @biomejs/biome
 -- Maybe use instead of neoformat + ESLint + Prettier in the future
 -- TypeScript, requires `npm i -g typescript-language-server`
-vim.lsp.config('ts_ls',
-  coq.lsp_ensure_capabilities({
-    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-    cmd = { "typescript-language-server", "--stdio" }
-  })
-)
+vim.lsp.config('ts_ls', {
+  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" }
+})
 
 -- Linting engine for JavaScript / Typescript, requires `npm i -g vscode-langservers-extracted`
 -- Try `mfussenegger/nvim-lint` instead if it doesn't work
-vim.lsp.config('eslint', coq.lsp_ensure_capabilities{
+vim.lsp.config('eslint', {
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -48,11 +47,9 @@ vim.lsp.config('eslint', coq.lsp_ensure_capabilities{
 })
 
 -- HTML/CSS/JSON, requires npm i -g vscode-langservers-extracted
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-vim.lsp.config('html', coq.lsp_ensure_capabilities({}))
+vim.lsp.config('html', {})
 -- Requires npm i -g @olrtg/emmet-language-server
-vim.lsp.config('emmet_language_server', coq.lsp_ensure_capabilities({}))
+vim.lsp.config('emmet_language_server', {})
 
 -- Enable LSPs
 vim.lsp.enable({'gopls', 'solargraph', 'pyright', 'bashls', 'clangd', 'ts_ls', 'eslint', 'html', 'emmet_language_server'})
