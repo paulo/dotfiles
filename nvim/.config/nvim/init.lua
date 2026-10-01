@@ -71,15 +71,7 @@ Plug 'vim-ruby/vim-ruby'
 Plug('rhysd/vim-clang-format', {['for'] = {'c', 'cpp', 'cc', 'h'}})
 
 -- AI assistance
-Plug 'stevearc/dressing.nvim'
-Plug 'MunifTanjim/nui.nvim'
-Plug 'MeanderingProgrammer/render-markdown.nvim'
-Plug 'HakonHarnes/img-clip.nvim'
 Plug 'zbirenbaum/copilot.lua'
-
--- Pass source=true if you want to build from source
-Plug('yetone/avante.nvim', { branch = 'main', ['do'] = 'make' })
-Plug 'folke/snacks.nvim'-- for modern input UI
 
 -- Auto-complete engine
 Plug('ms-jpq/coq_nvim', {branch = 'coq'})

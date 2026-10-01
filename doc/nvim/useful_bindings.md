@@ -21,19 +21,34 @@
 
 | Command | Description |
 |---|---|
-| ` :bp` | Go to the previous |
-| ` :bn` |  Go to the next |
-| ` :enew` | Open a new empty buffer |
-| ` :bp` |  Close the current buffer |
+| `<leader>l` | :bn, go to the next buffer |
+| `[b` / `]b` | previous/next buffer (vim-unimpaired; `<leader>h` is taken by telescope help tags) |
+| `<leader>t` | :enew, open a new empty buffer |
+| `<leader>q` | close the current buffer, keeping the window (:bp \| bd #) |
+| `j` / `k` | move by display lines; with a count, move by real lines (counts > 5 add a jump mark) |
+| `C-h`, `C-j`, `C-k`, `C-l` | move to the window on the left/below/above/right |
 
-## Toggle/Settings
+**Quickfix list**
 
 | Command | Description |
 |---|---|
-| `coh` | toggle search highlights |
-| `cor` | toggle relative line numbers |
-| `cow` | toggle line wrapping |
-| `cox` | toggle cursor cross-hairs |
+| `<leader><leader>o` | :copen |
+| `<leader><leader>q` | :cclose |
+| `<leader><leader>t` | :cwindow |
+| `<leader>j` | :cnext |
+| `<leader>k` | :cprevious |
+| `<leader><leader>k` | :cnfile |
+
+## Toggle/Settings
+
+Provided by vim-unimpaired.
+
+| Command | Description |
+|---|---|
+| `yoh` | toggle search highlights |
+| `yor` | toggle relative line numbers |
+| `yow` | toggle line wrapping |
+| `yox` | toggle cursor cross-hairs |
 
 ## Edition/Selection
 
@@ -71,7 +86,9 @@
 
 | Command | Description |
 |---|---|
-| `<leader>o` | insert an empty new line without entering insert mode |
+| `<leader>o` / `<leader>O` | insert an empty new line below/above without entering insert mode |
+| `Y` | yank till the end of the line |
+| `@` (visual mode) | prompt for a register and run that macro on every selected line |
 
 ## Window/Pane Control
 
@@ -96,7 +113,6 @@
 |---|---|
 | `<leader>s` | :split |
 | `<leader>v` | :vsplit |
-| `<leader>q` | :close |
 
 
 ## Search/Replace/Sort
@@ -117,7 +133,7 @@
 
 | Command | Description |
 |---|---|
-| `C-l` or `:nohl` | redraws the screen and removes any search highlighting |
+| `:nohl` | removes any search highlighting (is.vim also clears it when the cursor moves; `C-l` is remapped to window navigation) |
 | `C-A / C-X` | increments/decrements a number |
 | `:read/:r <filename> and :read!/:r!` | read contents of file into current cursor position, or read! output of command int current cursor position |
 | `.` | repeat last command (a simple macro) |
@@ -141,4 +157,4 @@ The :r! command reads the results of a command. It's the same as suspending the 
 
 | Command | Description |
 |---|---|
-| `<leader><Space>` | (za) toggles a fold based on the indent level of the current cursor line |
+| `<leader><Space>` or `<Space>` | (za) toggles a fold based on the indent level of the current cursor line |
