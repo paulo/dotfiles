@@ -45,7 +45,6 @@ Plug 'romus204/tree-sitter-manager.nvim'
 Plug 'scrooloose/nerdcommenter' -- Comment code.
 Plug 'tpope/vim-surround' -- Support for surrounding text.
 Plug 'michaeljsmith/vim-indent-object' -- Indentation as text objects
-Plug 'kana/vim-textobj-user' -- Allows the definition of new text objects
 Plug 'wellle/targets.vim' -- More text objects
 Plug 'Raimondi/delimitMate' -- Insert mode auto-completion for quotes, parens, brackets
 Plug 'justinmk/vim-sneak' -- Jump to any location specified by two characters
@@ -75,7 +74,6 @@ Plug 'zbirenbaum/copilot.lua'
 
 -- Auto-complete engine
 Plug('ms-jpq/coq_nvim', {branch = 'coq'})
-Plug('ms-jpq/coq.thirdparty')
 
 vim.call('plug#end')
 
@@ -125,7 +123,7 @@ vim.cmd.colorscheme 'nordic'
 
 -- Detect the current OS for host specific configs
 if not vim.g.os then
-    if vim.fn.has('win64') or vim.fn.has('win32') or vim.fn.has('win16') then
+    if vim.fn.has('win32') == 1 then
         vim.g.os = "Windows"
     else
         vim.g.os = vim.fn.substitute(vim.fn.system('uname'), '\n', '', '')
@@ -134,7 +132,6 @@ end
 
 -- Python host configuration by OS
 if vim.g.os == "Darwin" then
-    vim.g.python_host_prog = '/Users/paulo/.pyenv/versions/neovim2/bin/python'
     vim.g.python3_host_prog = '/Users/paulo/.pyenv/versions/neovim3/bin/python3'
 elseif vim.g.os == "Linux" then
     -- vim.g.python_host_prog = '/home/paulo/.pyenv/versions/2.7.18/envs/neovim2/bin/python'
@@ -157,11 +154,3 @@ require('autocomplete')
 -- rusty-tags configuration
 vim.cmd("autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/,$RUST_SRC_PATH/rusty-tags.vi")
 vim.cmd("autocmd BufWritePost *.rs :silent! exec '!rusty-tags vi --quiet --start-dir=' . expand('%:p:h') . '&' | redraw!")
-
-if vim.env.term == 'screen-256color' then
-    vim.g.tmux_navigator_no_mappings = 1
-    vim.api.nvim_set_keymap('n', '<C-h>', ':TmuxNavigateLeft<CR>', { silent = true })
-    vim.api.nvim_set_keymap('n', '<C-j>', ':TmuxNavigateDown<CR>', { silent = true })
-    vim.api.nvim_set_keymap('n', '<C-k>', ':TmuxNavigateUp<CR>', { silent = true })
-    vim.api.nvim_set_keymap('n', '<C-l>', ':TmuxNavigateRight<CR>', { silent = true })
-end

@@ -3,19 +3,12 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 
 -- Customize how diagnostics are displayed
--- From https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#customizing-how-diagnostics-are-displayed
--- These are currently the default values
+-- From https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization
 vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false,
-  severity_sort = false,
-})
-
--- Change diagnostic symbols in the sign column
--- From https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#change-diagnostic-symbols-in-the-sign-column-gutter
-vim.diagnostic.config({
+    virtual_text = true,
+    underline = true,
+    update_in_insert = false,
+    severity_sort = false,
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
@@ -34,45 +27,18 @@ vim.diagnostic.config({
 -- From https://github.com/neovim/nvim-lspconfig/wiki/UI-Customization#show-line-diagnostics-automatically-in-hover-window
 vim.o.updatetime = 250
 vim.api.nvim_create_autocmd("CursorHold", {
-  buffer = bufnr,
   callback = function()
     local opts = {
       focusable = false,
       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
       border = 'rounded',
-      source = 'always',
+      source = true,
       prefix = ' ',
       scope = 'cursor',
     }
     vim.diagnostic.open_float(nil, opts)
   end
 })
-
--- Rainbow parenthesis configuration
-vim.g.rainbow_active = 1
-vim.g.rainbow_conf = {
-  guifgs = {'royalblue3', 'darkorange3', 'seagreen3', 'firebrick'},
-  ctermfgs = {'lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'},
-  operators = '_,_',
-  parentheses = {'start=/(/ end=/)/ fold', 'start=/\\[/ end=/\\]/ fold', 'start=/{/ end=/}/ fold'},
-  separately = {
-    ['*'] = {},
-    tex = {
-      parentheses = {'start=/(/ end=/)/', 'start=/\\[/ end=/\\]/'},
-    },
-    vim = {
-      parentheses = {
-        'start=/(/ end=/)/',
-        'start=/\\[/ end=/\\]/',
-        'start=/{/ end=/}/ fold',
-        'start=/(/ end=/)/ containedin=vimFuncBody',
-        'start=/\\[/ end=/\\]/ containedin=vimFuncBody',
-        'start=/{/ end=/}/ fold containedin=vimFuncBody',
-      },
-    },
-    css = 0,
-  },
-}
 
 -- Performance improvement for indenting lines
 -- vim.g.indentLine_faster = 1

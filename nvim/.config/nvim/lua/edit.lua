@@ -36,8 +36,8 @@ vim.cmd([[autocmd BufWritePre * %s/\s\+$//e]])
 -- Tabular plugin mappings
 vim.api.nvim_set_keymap('n', '<leader>a=', ':Tab /=<CR>', {})
 vim.api.nvim_set_keymap('v', '<leader>a=', ':Tab /=<CR>', {})
-vim.api.nvim_set_keymap('n', '<leader>a:', ':Tab /:\zs<CR>', {})
-vim.api.nvim_set_keymap('v', '<leader>a:', ':Tab /:\zs<CR>', {})
+vim.api.nvim_set_keymap('n', '<leader>a:', [[:Tab /:\zs<CR>]], {})
+vim.api.nvim_set_keymap('v', '<leader>a:', [[:Tab /:\zs<CR>]], {})
 vim.api.nvim_set_keymap('n', '<leader>a\\|', ':Tab /\\|<CR>', {})
 vim.api.nvim_set_keymap('v', '<leader>a\\|', ':Tab /\\|<CR>', {})
 

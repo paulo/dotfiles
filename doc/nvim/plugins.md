@@ -24,7 +24,6 @@ Managed with [vim-plug](https://github.com/junegunn/vim-plug) in `nvim/.config/n
 
 - [**ms-jpq/coq_nvim**](#ms-jpqcoq_nvim) (Autocompletion engine)
 - **ms-jpq/coq.artifacts** (Snippets for coq)
-- **ms-jpq/coq.thirdparty** (Third party sources for coq)
 
 ### LanguageServer client
 
@@ -45,7 +44,6 @@ Managed with [vim-plug](https://github.com/junegunn/vim-plug) in `nvim/.config/n
 - [**scrooloose/nerdcommenter**](#scrooloosenerdcommenter) (Comment code)
 - [**tpope/vim-surround**](#tpopevim-surround) (Support for surrounding text)
 - **michaeljsmith/vim-indent-object** (Indentation as text objects - ai and ii to trigger)
-- **kana/vim-textobj-user** (Allows the definition of new text objects)
 - **wellle/targets.vim** (More text objects)
 - **Raimondi/delimitMate** (Insert mode auto-completion for quotes, parentheses, brackets)
 - [**justinmk/vim-sneak**](#justinmkvim-sneak) (Jump to any location specified by two characters)
@@ -108,13 +106,12 @@ Managed with [vim-plug](https://github.com/junegunn/vim-plug) in `nvim/.config/n
 
 | Command | Description |
 |---|---|
-| `<C-Space>` | trigger completion (insert mode) |
 | `K` | hover documentation for the symbol under the cursor |
 | `gd` | go to definition |
 | `gD` | go to declaration |
-| `gi` | list implementations |
-| `go` | go to type definition |
-| `gr` | list references |
+| `gri` | list implementations (nvim default) |
+| `grt` | go to type definition (nvim default) |
+| `grr` | list references (nvim default) |
 | `<C-k>` | signature help (overrides the window-up mapping in LSP buffers) |
 | `F2` | rename symbol |
 | `F3` | format file |

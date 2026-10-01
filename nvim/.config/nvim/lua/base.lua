@@ -80,9 +80,9 @@ vim.api.nvim_set_keymap('n', 'k', 'v:count ? (v:count > 5 ? "m\'" . v:count : ""
 vim.o.mouse = 'a'
 
 -- Persistent undo. https://bluz71.github.io/2018/02/26/more-vim-tips.html
-local undoDir = '/tmp/.undodir_' .. vim.fn.expand('$USER')
-if not vim.fn.isdirectory(undoDir) then
-    vim.fn.mkdir(undoDir, '', 0700)
+local undoDir = vim.fn.stdpath('state') .. '/undo'
+if vim.fn.isdirectory(undoDir) == 0 then
+    vim.fn.mkdir(undoDir, 'p', tonumber('700', 8))
 end
 vim.o.undodir = undoDir
 vim.o.undofile = true
@@ -139,10 +139,8 @@ vim.opt.fillchars = { eob = ' ' }
 -- Window splitting and quitting
 vim.api.nvim_set_keymap('n', '<leader>s', ':split<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>v', ':vsplit<CR>', { silent = true })
-vim.api.nvim_set_keymap('n', '<leader>q', ':close<CR>', { silent = true })
 
 -- Buffer navigation helpers
-vim.api.nvim_set_keymap('n', '<leader>h', ':bp<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>l', ':bn<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', ':enew<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':bp <BAR> bd #<CR>', { silent = true })
@@ -158,11 +156,4 @@ vim.api.nvim_set_keymap('n', '<leader><leader>t', ':cwindow<CR>', { silent = tru
 vim.api.nvim_set_keymap('n', '<leader>j', ':cnext<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader>k', ':cprevious<CR>', { silent = true })
 vim.api.nvim_set_keymap('n', '<leader><leader>k', ':cnfile<CR>', { silent = true })
-
--- Navigate between vim splits and tmux panes with C-h/j/k/l
--- (https://bluz71.github.io/2017/06/14/a-few-vim-tmux-mappings.html)
-vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', { silent = true })
-vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', { silent = true })
 
