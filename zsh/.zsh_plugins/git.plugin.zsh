@@ -289,6 +289,10 @@ alias gdw='git diff --word-diff'
 gdv() { git diff -w "$@" | view - }
 compdef _git gdv=git-diff
 
+alias gdsplit='git -c core.pager="git-split-diffs --color | less -RFX" diff'
+# difit defaults to the HEAD commit; "working" matches plain `git diff`.
+gdbrowse() { difit "${@:-working}" }
+
 alias gf='git fetch'
 alias gfa='git fetch --all --prune'
 alias gfo='git fetch origin'
